@@ -1,0 +1,55 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+.castx {
+    width: 100%;
+    margin: 0px auto;
+}
+
+.castx-box {
+    width: 100%;
+    height: 140px;
+}
+
+.castx-wheel {
+    width: 450px;
+    height: 450px;
+    position: relative;
+}
+
+.castx-img {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    user-select: none;
+}
+
+.castx-start {
+    font-size: 1.2em;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.castx-result {
+    width: 100%;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.lucky_spin_resultNumber
+{
+    font-size: 5.5em;
+    color: #ce3709;
+    font-weight: bold;
+}
+
+@media (max-width:575px) {
+    .castx-wheel {
+        width: 350px;
+        height: 350px;
+    }
+}
