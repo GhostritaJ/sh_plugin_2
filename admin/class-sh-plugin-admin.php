@@ -115,20 +115,31 @@ class Sh_Plugin_Admin {
 	}
 
 	public function sh_plugin_register_settings(){
-		register_setting('sh_plugin_options_group','bg_container');
-		register_setting('sh_plugin_options_group','bg_btn');
-		register_setting('sh_plugin_options_group','bg_btn_hover');
-		register_setting('sh_plugin_options_group','color_text_btn');
-		register_setting('sh_plugin_options_group','color_text_msg');
-		register_setting('sh_plugin_options_group','color_text_number');
+		//for checker
+		register_setting('sh_plugin_options_group','div1_text_color');
+		register_setting('sh_plugin_options_group','month_year_select_bg');
+		register_setting('sh_plugin_options_group','div2_text_color');
+		register_setting('sh_plugin_options_group','month_year_select_color');
+		register_setting('sh_plugin_options_group','label_text_color');
+		register_setting('sh_plugin_options_group','lottery');
+		register_setting('sh_plugin_options_group','lottery_input');
+		register_setting('sh_plugin_options_group','button_text');
+		register_setting('sh_plugin_options_group','button_background');
 
+		//for shower
+		register_setting('sh_plugin_options_group','myBox_text_color');
+		register_setting('sh_plugin_options_group','head_date');
+		register_setting('sh_plugin_options_group','btnsh_color');
+		register_setting('sh_plugin_options_group','md_text');
+		register_setting('sh_plugin_options_group','sm_text');
+		register_setting('sh_plugin_options_group','td_myDiv');
 	}
 
 	public function sh_plugin_setting_page(){
-		add_options_page('Sh Plugin', 'Sh Plugin Setting', 'manage_options', 'sh_plugin_options_group', array($this,'sh_plugin_html'));
+		add_options_page('Sh Plugin', 'Sh Plugin Setting', 'manage_options', 'sh_plugin_options_group', array($this,'sh_plugin_checker_html'));
 	}
 
-	public function sh_plugin_html(){
+	public function sh_plugin_checker_html(){
 	?>
 <div class="wrap">
     <h1>Sh Plugin Design Settings</h1>
@@ -137,63 +148,116 @@ class Sh_Plugin_Admin {
         settings_fields('sh_plugin_options_group');
         do_settings_sections('sh_plugin_options_group');
       ?>
-        <h3>Design Settings</h3>
+        <h3><b>Design Settings Checker</b></h3>
         <table class="form-table">
             <tr>
-                <th scope="row"><label for="bg_container">สีตัวหนังสือ งวดวันที่'</label></th>
+                <th scope="row"><label for="div1_text_color">สีตัวอักษร ตรวจผลสลากกินแบ่งรัฐบาล'</label></th>
                 <td>
-					<input type="color" class="wp-color-picker" name="bg_container" id="bg_container"
-                    value="<?php echo get_option('bg_container'); ?>">
+					<input type="color" class="wp-color-picker" name="div1_text_color" id="div1_text_color"
+                    value="<?php echo get_option('div1_text_color'); ?>">
 				</td>
             </tr>
             <tr>
-                <th scope="row"><label for="bg_btn">สีพื้นหลัง งวดวันที่</label></th>
-                <td>
-					<input type="color" class="wp-color-picker" name="bg_btn" id="bg_btn"
-                    value="<?php echo get_option('bg_btn'); ?>"></td>
-            	</tr>
-            <tr>
-                <th scope="row"><label for="bg_btn_hover">สีตัวหนังสือ ปี วัน/เดือน</label></th>
+                <th scope="row"><label for="div2_text_color">สีตัวอักษร ตรวจผลรางวัล จากหมายเลขสลากงวดประจำวันที่</label></th>
 				<td>
-					<input type="color" class="wp-color-picker" name="bg_btn_hover" id="bg_btn_hover"
-					value="<?php echo get_option('bg_btn_hover'); ?>">
+					<input type="color" class="wp-color-picker" name="div2_text_color" id="div2_text_color"
+					value="<?php echo get_option('div2_text_color'); ?>">
+				</td>
+            </tr>
+			<tr>
+                <th scope="row"><label for="month_year_select_bg">สีพื้นหลัง ช่องโปรดเลือก พ.ศ./วัน-เดือน</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="month_year_select_bg" id="month_year_select_bg"
+                    value="<?php echo get_option('month_year_select_bg'); ?>"></td>
+            </tr>
+            <tr>
+                <th scope="row"><label for="month_year_select_color">สีตัวอักษร ช่องโปรดเลือก พ.ศ./วัน-เดือน</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="month_year_select_color" id="month_year_select_color"
+                    value="<?php echo get_option('month_year_select_color'); ?>">
 				</td>
             </tr>
             <tr>
-                <th scope="row"><label for="color_text_btn">สีตัวอักษรในปุ่ม</label></th>
+                <th scope="row"><label for="label_text_color">สีตัวอักษร พ.ศ./วัน-เดือน</label></th>
                 <td>
-					<input type="color" class="wp-color-picker" name="color_text_btn" id="color_text_btn"
-                    value="<?php echo get_option('color_text_btn'); ?>">
+					<input type="color" class="wp-color-picker" name="label_text_color" id="label_text_color"
+                    value="<?php echo get_option('label_text_color'); ?>">
+				</td>
+            </tr>
+			<tr>
+                <th scope="row"><label for="lottery">สีตัวอักษร เลขสลาก 1,2,3</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="lottery" id="lottery"
+                    value="<?php echo get_option('lottery'); ?>">
+				</td>
+            </tr>
+			<tr>
+                <th scope="row"><label for="lottery_input">สีตัวอักษร กรอกเลขสลาก6หลัก</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="lottery_input" id="lottery_input"
+                    value="<?php echo get_option('lottery_input'); ?>">
+				</td>
+            </tr>
+			<tr>
+                <th scope="row"><label for="button_text">สีตัวอักษร ในปุ่ม</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="button_text" id="button_text"
+                    value="<?php echo get_option('button_text'); ?>">
+				</td>
+            </tr>
+			<tr>
+                <th scope="row"><label for="button_background">สีพื้นหลัง ในปุ่ม</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="button_background" id="button_background"
+                    value="<?php echo get_option('button_background'); ?>">
+				</td>
+            </tr>
+        </table>
+		<br>
+		<h3><b>Design Settings Shower</b></h3>
+        <table class="form-table">
+            <tr>
+                <th scope="row"><label for="myBox_text_color">สีตัวอักษร งวด วันเดือนปี'</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="myBox_text_color" id="myBox_text_color"
+                    value="<?php echo get_option('myBox_text_color'); ?>">
 				</td>
             </tr>
             <tr>
-                <th scope="row"><label for="color_text_msg">สีพื้นหลังปุ่ม</label></th>
-                <td>
-					<input type="color" class="wp-color-picker" name="color_text_msg" id="color_text_msg"
-                    value="<?php echo get_option('color_text_msg'); ?>">
+                <th scope="row"><label for="head_date">สีตัวอักษร หัวข้อ ปี-วัน/เดือน</label></th>
+				<td>
+					<input type="color" class="wp-color-picker" name="head_date" id="head_date"
+					value="<?php echo get_option('head_date'); ?>">
 				</td>
             </tr>
 			<tr>
-                <th scope="row"><label for="color_text_msg">สีพื้นหลังหัวข้อรางวัลที่</label></th>
+                <th scope="row"><label for="btnsh_color">สีตัวอักษร ในปุ่ม</label></th>
                 <td>
-					<input type="color" class="wp-color-picker" name="color_text_msg" id="color_text_msg"
-                    value="<?php echo get_option('color_text_msg'); ?>">
+					<input type="color" class="wp-color-picker" name="btnsh_color" id="btnsh_color"
+                    value="<?php echo get_option('btnsh_color'); ?>"></td>
+            </tr>
+            <tr>
+                <th scope="row"><label for="md_text">สีตัวอักษร หัวข้อ รางวัลต่างๆ</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="md_text" id="md_text"
+                    value="<?php echo get_option('md_text'); ?>">
+				</td>
+            </tr>
+            <tr>
+                <th scope="row"><label for="sm_text">สีตัวอักษร จำนวนและราคารางวัล</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="sm_text" id="sm_text"
+                    value="<?php echo get_option('sm_text'); ?>">
 				</td>
             </tr>
 			<tr>
-                <th scope="row"><label for="color_text_msg">สีตัวอักษรรางวัลที่</label></th>
+                <th scope="row"><label for="td_myDiv">สีตัวอักษร เลขสลากที่ถูกรางวัล</label></th>
                 <td>
-					<input type="color" class="wp-color-picker" name="color_text_msg" id="color_text_msg"
-                    value="<?php echo get_option('color_text_msg'); ?>">
+					<input type="color" class="wp-color-picker" name="td_myDiv" id="td_myDiv"
+                    value="<?php echo get_option('td_myDiv'); ?>">
 				</td>
             </tr>
-			<tr>
-                <th scope="row"><label for="color_text_msg">สีตัวอักษรราคารางวัล</label></th>
-                <td>
-					<input type="color" class="wp-color-picker" name="color_text_msg" id="color_text_msg"
-                    value="<?php echo get_option('color_text_msg'); ?>">
-				</td>
-            </tr>
+			
         </table>
         <?php submit_button(); ?>
     </form>

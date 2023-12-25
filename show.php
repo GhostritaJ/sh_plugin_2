@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="th">
-    <head>
+
+   
             <?php 
                     set_time_limit(400);
             ?>
@@ -70,101 +69,7 @@
            
         ?>
     </head>
-    <style>
-        <?php   // .myDiv : color number won prize lotto
-                // .myDivH : bg color number won prize lotto
-                // .myBox : box for show date month selected
-                // .btnsh : color button
-                // .homesh : bg color title
-                // .md-text : title size
-                // .sm-text : small title size
-        ?>
-        .myDivH {
-            background: rgb(0,0,0);
-			background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%);
-            padding: 10px;
-            font-family: 'Kanit', sans-serif;
-            width: 100%;
             
-        }
-
-        .myDiv {
-            /* border: 2px outset #3b3b3b; */
-			background: #000000;
-            color: white;
-            padding-top: 6px;
-            padding-bottom: 6px;
-            font-family: 'Kanit', sans-serif;
-        }
-
-        .myBox {
-            font-size: 24px;
-            color: white;
-            background: rgb(0,0,0);
-			background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(197,128,61,1) 50%, rgba(0,0,0,1) 100%);
-            padding-top: 25px;
-            padding-bottom: 25px;     
-            font-family: 'Kanit', sans-serif;
-        }
-
-        .btnsh{
-            color: white;
-            background: rgb(0,0,0);
-			background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%);
-            font-family: 'Kanit', sans-serif;
-        }
-
-        .homesh{
-            /* background: rgb(224,224,224);
-            background: linear-gradient(247deg, rgba(224,224,224,1) 5%, rgba(255,255,255,1) 31%, rgba(255,255,255,1) 69%, rgba(226,226,226,1) 99%); */
-			background: #000000;
-            font-family: 'Kanit', sans-serif;
-        }
-
-        .md-text{
-            font-size: 14px;                    /* old: 18px */
-            font-family: 'Kanit', sans-serif;
-            height: 6px;
-            color: blue!important;
-        }
-
-        .sm-text{
-            font-size: 10px;                    /* old: 12px */
-            font-family: 'Kanit', sans-serif;
-            color: #ffc894;
-            height: 24px;
-        }
-        select{
-            font-family: 'kanit', sans-serif !important;
-        }
-		thead{
-			/*color: #ffc894;*/
-		}
-		td{
-			border-top: 0px!important;
-		}
-		tr{
-			
-		}
-		td.myDiv:hover {
-		  	background-color: black!important; /* หรือคุณอาจจะลบบรรทัดนี้ทั้งหมด */
-		  	color: white!important; /* หรือคุณอาจจะลบบรรทัดนี้ทั้งหมด */
-		}
-		td.myDiv:not(:hover) {
-			background-color: black!important;; /* สีที่ไม่ได้ถูกเม้าส์ชี้ */
-			color: white!important;; /* หรือสีอื่น ๆ ที่คุณต้องการให้เหมือนตัวอย่าง */
-		}
-        @media (max-width: 375px) {
-            .xxx{
-                display: none;
-            }  
-        }
-
-        thead.head-date{
-            color: #ffc894;
-        }
-        
-    </style>
     <body class="homesh blog  wide">
         <div id="page" class="hfeed site">
             <div id="main" class="clearfix">
@@ -572,7 +477,6 @@
         work_flow(); // เพิ่มเรียกใช้ฟังก์ชัน work_flow() เมื่อมีการเลือกปีใหม่
     });
 </script>
-
     
-</html>
+
 <!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1681173548 -->

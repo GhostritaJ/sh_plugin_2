@@ -21,7 +21,7 @@ Version: 1.0.0
  * @wordpress-plugin
  * Plugin Name:       Sh Plugin
  * Plugin URI:        https://-
- * Description:       [showhoy width="100%" height="2400"] เพิ่ม shortcode นี้ เพื่อเพิ่มตารางแสดงเลขถูกรางวัล และ [showhoy2 width="100%" height="650"] เพิ่ม shortcode นี้ การตรวจสอบผลรางวัล
+ * Description:       [showhouy1 height="800"] เพิ่ม shortcode นี้ เพื่อเพิ่มตารางแสดงเลขถูกรางวัล และ [showhouy2 height="800"] เพิ่ม shortcode พร้อมระบุความสูงตามตัวอย่าง
  * Version:           1.0.0
  * Author:            gj
  * Author URI:        https://-/
@@ -86,82 +86,6 @@ function run_sh_plugin() {
 
 }
 run_sh_plugin();
-
-function sshowhoy($atts, $content = null ) {
-  
-    //echo '<div id="my-plugin-value-container"></div>';
-    $a = shortcode_atts( array(
-        'width' => '100%',
-        'height' => '650',
-        'colorText' => 'red',
-        'colorBgText' => 'green',
-    ), $atts );
-        
-    return '<iframe src="/wp-content/plugins/sh-plugin/show.php" width='.$a['width'].' height='.$a['height'].' frameborder=0></iframe>';
-    
-}
-
-function sshowhoy2($atts, $content = null ) {
-  
-  $a = shortcode_atts( array(
-      'width' => '100%',
-      'height' => '100%',
-  ), $atts );
-  return '<iframe src="/wp-content/plugins/sh-plugin/checker.php" width='.$a['width'].' height='.$a['height'].' frameborder=0></iframe>';
-}
-
-add_shortcode('showhoy', 'sshowhoy');
-add_shortcode('showhoy2', 'sshowhoy2');
-
-/* ----------------------------------------------------------------------------- */
-
-function part_show($atts) {
-    // กำหนดค่าเริ่มต้นของพารามิเตอร์
-    $atts = shortcode_atts(
-        array(
-            'shplugin_width' => '100%',
-            'shplugin_height' => '2400px',
-
-            'myBox_background' => 'black',
-            'head_date_color' => 'blue',
-
-            'btnsh_background' => 'orange',
-            'btnsh_color' => 'white',
-
-            'myDivH_background' => 'white',
-            'md_text_color' => 'black',
-            'sm_text_color' => 'black',
-
-            'myDiv_background' => 'white',
-            'myDiv_color' => 'black',
-
-            'sm_text_color' => 'black',            
-        ),
-        $atts,
-        'shplugin'
-    );
-
-    // สร้าง inline CSS จากพารามิเตอร์
-    $shplugin_inline_css = "
-        width: {$atts['shplugin_width']}; 
-        height: {$atts['shplugin_height']};
-    ";
-
-    ob_start(); // เริ่มต้นการเก็บเนื้อหาขึ้นมา
-    ?>
-    <div class="custom-shplugin" style="<?php echo esc_attr($shplugin_inline_css); ?>">
-        <?php
-            // นำเข้าโค้ดจากไฟล์ show.php
-            include plugin_dir_path(__FILE__) . 'show.php';
-        ?>
-    </div>
-    <?php
-    $output = ob_get_clean(); // ดึงเนื้อหาที่เก็บไว้
-
-    return $output;
-}
-
-add_shortcode('show_houy', 'part_show');
 
 ?>
 
