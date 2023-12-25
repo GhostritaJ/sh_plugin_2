@@ -1,10 +1,19 @@
-
+<?php require(dirname(__FILE__) . '/../../../wp-config.php'); ?>
    
             <?php 
                     set_time_limit(400);
             ?>
+
         <!-- font Kanit -->
         <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet"/>
+
+        <!-- CSS -->
+        <?php
+            $plugin_name = "Sh_Plugin_Checker";
+            $version = "1.2";
+            $sh_plugin = new Sh_Plugin_Public($plugin_name, $version);
+            $sh_plugin->css_shower();
+        ?>
 
         <?php
             function select_for_show($yearNow) {
@@ -86,6 +95,7 @@
                 ?>
                 
                 <?php 
+                    //var_dump($responseYear[$yearNow]) ;
                     for($i=$yearNow;$i>2565;$i--){  
                         $responseYear[$i] = select_for_show($i);   
                                                                     // value year
@@ -100,6 +110,7 @@
                 ?>
                 <?php
                     //$yearNow = 2553;
+                    
                     $lastLotto = count($responseYear[$yearNow])-1;
                     $datas[$yearNow][$lastLotto] = list_price_win($yearNow, $rpMonth[$yearNow][$lastLotto], $rpDay[$yearNow][$lastLotto]);
                     $dataNow = $datas[$yearNow][$lastLotto];
@@ -158,7 +169,7 @@
                                             <?php
                                                 echo "<option value='' selected>ปี</option>";
                                                 // Generate options for year dropdown
-                                                for ($i = $yearNow; $i > 2547; $i--) {                              //หาค่าปีแล้วดึงมาใส่ซะ
+                                                for ($i = $yearNow; $i > 2553; $i--) {                              //หาค่าปีแล้วดึงมาใส่ซะ
                                                     if($i == $yearNow){
                                                         //$j = $i - 543;
                                                         echo "<option class='selects' value='$i'>$i</option>";

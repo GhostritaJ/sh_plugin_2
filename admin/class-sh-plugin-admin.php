@@ -117,8 +117,8 @@ class Sh_Plugin_Admin {
 	public function sh_plugin_register_settings(){
 		//for checker
 		register_setting('sh_plugin_options_group','div1_text_color');
-		register_setting('sh_plugin_options_group','month_year_select_bg');
 		register_setting('sh_plugin_options_group','div2_text_color');
+		register_setting('sh_plugin_options_group','month_year_select_bg');
 		register_setting('sh_plugin_options_group','month_year_select_color');
 		register_setting('sh_plugin_options_group','label_text_color');
 		register_setting('sh_plugin_options_group','lottery');
@@ -132,7 +132,10 @@ class Sh_Plugin_Admin {
 		register_setting('sh_plugin_options_group','btnsh_color');
 		register_setting('sh_plugin_options_group','md_text');
 		register_setting('sh_plugin_options_group','sm_text');
-		register_setting('sh_plugin_options_group','td_myDiv');
+		register_setting('sh_plugin_options_group','td_myDiv_text');
+		register_setting('sh_plugin_options_group','td_myDiv_text_not');
+		register_setting('sh_plugin_options_group','td_myDiv_bg');
+		register_setting('sh_plugin_options_group','td_myDiv_bg_not');
 	}
 
 	public function sh_plugin_setting_page(){
@@ -205,13 +208,6 @@ class Sh_Plugin_Admin {
                     value="<?php echo get_option('button_text'); ?>">
 				</td>
             </tr>
-			<tr>
-                <th scope="row"><label for="button_background">สีพื้นหลัง ในปุ่ม</label></th>
-                <td>
-					<input type="color" class="wp-color-picker" name="button_background" id="button_background"
-                    value="<?php echo get_option('button_background'); ?>">
-				</td>
-            </tr>
         </table>
 		<br>
 		<h3><b>Design Settings Shower</b></h3>
@@ -251,10 +247,31 @@ class Sh_Plugin_Admin {
 				</td>
             </tr>
 			<tr>
-                <th scope="row"><label for="td_myDiv">สีตัวอักษร เลขสลากที่ถูกรางวัล</label></th>
+                <th scope="row"><label for="td_myDiv_text">สีตัวอักษร เลขสลากที่ถูกรางวัล ที่ถูกเม้าส์ชี้</label></th>
                 <td>
-					<input type="color" class="wp-color-picker" name="td_myDiv" id="td_myDiv"
-                    value="<?php echo get_option('td_myDiv'); ?>">
+					<input type="color" class="wp-color-picker" name="td_myDiv_text" id="td_myDiv_text"
+                    value="<?php echo get_option('td_myDiv_text'); ?>">
+				</td>
+            </tr>
+			<tr>
+                <th scope="row"><label for="td_myDiv_text_not">สีตัวอักษร เลขสลากที่ถูกรางวัล ที่ไม่ถูกเม้าส์ชี้</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="td_myDiv_text_not" id="td_myDiv_text_not"
+                    value="<?php echo get_option('td_myDiv_text_not'); ?>">
+				</td>
+            </tr>
+			<tr>
+                <th scope="row"><label for="td_myDiv_bg">สีพื้นหลัง เลขสลากที่ถูกรางวัล ที่ถูกเม้าส์ชี้</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="td_myDiv_bg" id="td_myDiv_bg"
+                    value="<?php echo get_option('td_myDiv_bg'); ?>">
+				</td>
+            </tr>
+			<tr>
+                <th scope="row"><label for="td_myDiv_bg_not">สีพื้นหลัง เลขสลากที่ถูกรางวัล ที่ไม่ถูกเม้าส์ชี้</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="td_myDiv_bg_not" id="td_myDiv_bg_not"
+                    value="<?php echo get_option('td_myDiv_bg_not'); ?>">
 				</td>
             </tr>
 			

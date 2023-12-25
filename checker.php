@@ -1,3 +1,4 @@
+<?php require(dirname(__FILE__) . '/../../../wp-config.php'); ?>
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -16,15 +17,11 @@
 
     <!-- CSS -->
     <?php
-        //include 'public/css/sh-css-checker.php';
-        include 'public/class-sh-plugin-public.php';
-        css_checker();
-        //$sh_plugin_public = new Sh_Plugin_Public($plugin_name, $version);
-        //$use_css_checker = $sh_plugin_public->css_checker();
-       
-        //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'checker.php';
+        $plugin_name = "Sh_Plugin_Checker";
+        $version = "1.2";
+        $sh_plugin = new Sh_Plugin_Public($plugin_name, $version);
+        $sh_plugin->css_checker();
     ?>
-    <!-- ?php echo custom_styles_checker(); ? -->
 </head>
 <body>
 

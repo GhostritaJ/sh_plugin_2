@@ -101,10 +101,8 @@ class Sh_Plugin_Public {
 	}
 
 	public function sh_plugin_init(){
-		//add_shortcode( "showhouy1", array($this,'sshowhoy1') );		//for shower
+		add_shortcode( "showhouy1", array($this,'sshowhoy1') );		//for shower
 		add_shortcode( "showhouy2", array($this,'sshowhoy2') );		//for checker
-		
-		
 	}
 
 	public function sshowhoy1($atts, $content = null ) {
@@ -113,120 +111,114 @@ class Sh_Plugin_Public {
 			'width' => '100%',
 			'height' => '100%',
 		), $atts );
-		//$this->getShowerHTML();
-		$html_content = $this->getShowerHTML();
-
-		//return '<iframe srcdoc="'.htmlspecialchars($html_content).'" width="' . $a['width'] . '" height="' . $a['height'] . ';" frameborder="0"></iframe>';
 		return '<iframe src="/wp-content/plugins/sh-plugin/show.php" width='.$a['width'].' height='.$a['height'].' frameborder=0></iframe>';
-		//return '<iframe srcdoc="'.htmlspecialchars($html_content).'" width=' . $a['width'] . ' height=' . $a['height'] . ' frameborder=0></iframe>';
 
 	}
 
-	public function getShowerHTML() {
-		ob_start(); // เริ่มการบันทึกเอาท์พุตเพื่อจะให้ได้โค้ด HTML
+	public function css_shower() {
 		?>
-		<head>
-			<style>
-				<?php   // .myDiv : color number won prize lotto
-						// .myDivH : bg color number won prize lotto
-						// .myBox : box for show date month selected
-						// .btnsh : color button
-						// .homesh : bg color title
-						// .md-text : title size
-						// .sm-text : small title size
-				?>
-				.myDivH {
-					background: rgb(0,0,0);
-					background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%);
-					padding: 10px;
-					font-family: 'Kanit', sans-serif;
-					width: 100%;
-					
-				}
-
-				.myDiv {
-					/* border: 2px outset #3b3b3b; */
-					background: #000000;
-					color: white;
-					padding-top: 6px;
-					padding-bottom: 6px;
-					font-family: 'Kanit', sans-serif;
-				}
-
-				.myBox {
-					font-size: 24px;
-					color: white;
-					background: rgb(0,0,0);
-					background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(197,128,61,1) 50%, rgba(0,0,0,1) 100%);
-					padding-top: 25px;
-					padding-bottom: 25px;     
-					font-family: 'Kanit', sans-serif;
-				}
-
-				.btnsh{
-					color: white;
-					background: rgb(0,0,0);
-					background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%);
-					font-family: 'Kanit', sans-serif;
-				}
-
-				.homesh{
-					/* background: rgb(224,224,224);
-					background: linear-gradient(247deg, rgba(224,224,224,1) 5%, rgba(255,255,255,1) 31%, rgba(255,255,255,1) 69%, rgba(226,226,226,1) 99%); */
-					background: #000000;
-					font-family: 'Kanit', sans-serif;
-				}
-
-				.md-text{
-					font-size: 14px;                    /* old: 18px */
-					font-family: 'Kanit', sans-serif;
-					height: 6px;
-					color: blue!important;
-				}
-
-				.sm-text{
-					font-size: 10px;                    /* old: 12px */
-					font-family: 'Kanit', sans-serif;
-					color: #ffc894;
-					height: 24px;
-				}
-				select{
-					font-family: 'kanit', sans-serif !important;
-				}
-				thead{
-					/*color: #ffc894;*/
-				}
-				td{
-					border-top: 0px!important;
-				}
-				tr{
-					
-				}
-				td.myDiv:hover {
-					background-color: black!important; /* หรือคุณอาจจะลบบรรทัดนี้ทั้งหมด */
-					color: white!important; /* หรือคุณอาจจะลบบรรทัดนี้ทั้งหมด */
-				}
-				td.myDiv:not(:hover) {
-					background-color: black!important;; /* สีที่ไม่ได้ถูกเม้าส์ชี้ */
-					color: white!important;; /* หรือสีอื่น ๆ ที่คุณต้องการให้เหมือนตัวอย่าง */
-				}
-				@media (max-width: 375px) {
-					.xxx{
-						display: none;
-					}  
-				}
-
-				thead.head-date{
-					color: #ffc894;
-				}
+		<style>
+			<?php   // .myDiv : color number won prize lotto
+					// .myDivH : bg color number won prize lotto
+					// .myBox : box for show date month selected
+					// .btnsh : color button
+					// .homesh : bg color title
+					// .md-text : title size
+					// .sm-text : small title size
+			?>
+			.myDivH {
+				background: rgb(0,0,0);
+				background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%);
+				padding: 10px;
+				font-family: 'Kanit', sans-serif;
+				width: 100%;
 				
-			</style>
+			}
+
+			.myDiv {
+				/* border: 2px outset #3b3b3b; */
+				background: #000000;
+				color: white;
+				padding-top: 6px;
+				padding-bottom: 6px;
+				font-family: 'Kanit', sans-serif;
+			}
+
+			.myBox {
+				font-size: 24px;
+				/* color: white; */
+				color: <?php echo get_option('myBox_text_color'); ?>;
+				background: rgb(0,0,0);
+				background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(197,128,61,1) 50%, rgba(0,0,0,1) 100%);
+				padding-top: 25px;
+				padding-bottom: 25px;     
+				font-family: 'Kanit', sans-serif;
+			}
+
+			.btnsh{
+				/* color: white; */
+				color: <?php echo get_option('btnsh_color'); ?>;
+				background: rgb(0,0,0);
+				background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%);
+				font-family: 'Kanit', sans-serif;
+			}
+
+			.homesh{
+				/* background: rgb(224,224,224);
+				background: linear-gradient(247deg, rgba(224,224,224,1) 5%, rgba(255,255,255,1) 31%, rgba(255,255,255,1) 69%, rgba(226,226,226,1) 99%); */
+				background: #000000;
+				font-family: 'Kanit', sans-serif;
+			}
+
+			.md-text{
+				font-size: 14px;                    /* old: 18px */
+				font-family: 'Kanit', sans-serif;
+				height: 6px;
+				/* color: blue!important; */
+				color: <?php echo get_option('md_text'); ?>!important;
+				
+			}
+
+			.sm-text{
+				font-size: 10px;                    /* old: 12px */
+				font-family: 'Kanit', sans-serif;
+				/* color: #ffc894; */
+				color: <?php echo get_option('sm_text'); ?>;
+				height: 24px;
+			}
+			select{
+				font-family: 'kanit', sans-serif !important;
+			}
+			thead{
+				/*color: #ffc894;*/
+			}
+			td{
+				border-top: 0px!important;
+			}
+			tr{
+				
+			}
+			td.myDiv:hover {
+				background-color: <?php echo get_option('td_myDiv_bg'); ?>!important; 					/* สีพื้นหลังเลขที่ถูกเม้าส์ชี้ */
+				color: <?php echo get_option('td_myDiv'); ?>!important; 								/* สีตัวเลขที่ถูกเม้าส์ชี้ */
+			}
+			td.myDiv:not(:hover) {
+				background-color: <?php echo get_option('td_myDiv_bg_not'); ?>!important; 				/* สีที่ไม่ได้ถูกเม้าส์ชี้ */
+				color: <?php echo get_option('td_myDiv_text_not'); ?>!important; 						/* หรือสีอื่น ๆ ที่คุณต้องการให้เหมือนตัวอย่าง */
+			}
+			@media (max-width: 375px) {
+				.xxx{
+					display: none;
+				}  
+			}
+
+			thead.head-date{
+				/* color: #ffc894; */
+				color: <?php echo get_option('head_date'); ?>;
+			}
+			
+		</style>
 		<?php
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'show.php';
-		?>
-		
-		<?php
-		return ob_get_clean(); // ดึงเนื้อหาที่บันทึกไว้
 	}
 
 	public function sshowhoy2($atts, $content = null ) {
@@ -235,39 +227,8 @@ class Sh_Plugin_Public {
 			'width' => '100%',
 			'height' => '100%',
 		), $atts );
-
-		// ทำให้สไตล์ CSS ที่กำหนดเองปลอดภัย
-		/*$div1_text_color = esc_attr($a['div1_text_color']);
-		$div1_background_color = esc_attr($a['div1_background_color']);
-		$div2_text_color = esc_attr($a['div2_text_color']);
-		$div2_background_color = esc_attr($a['div2_background_color']);
-		$label_text_color = esc_attr($a['label_text_color']);
-		$lottery = esc_attr($a['lottery']);
-		$lottery_input = esc_attr($a['lottery_input']);
-		$button_text = esc_attr($a['button_text']);
-        $button_background = esc_attr($a['button_background']);*/
-
-		//return '<iframe src="/wp-content/plugins/sh-plugin/checker.php" width='.$a['width'].' height='.$a['height'].' frameborder=0></iframe>';
-		/*return '<iframe src="/wp-content/plugins/sh-plugin/checker.php"
-			div1_text_color=' . get_option('div1_text_color') . '&div1_background_color=' . get_option('div1_background_color')
-			. 'div2_text_color=' . get_option('div2_text_color') . '&div2_background_color=' . get_option('div2_background_color')
-			. 'label_text_color=' . get_option('label_text_color')
-			. 'lottery=' . get_option('lottery') . 'lottery_input=' . get_option('lottery_input')
-			. 'button_text=' . get_option('button_text') . 'button_background=' . get_option('button_background')
-			. ' width=' . $a['width'] . ' height=' . $a['height'] . ' frameborder=0>
-		</iframe>';*/
-
-		// ดึงโค้ด HTML จากฟังก์ชัน
-		//$html_content2 = $this->getCheckerHTML($div1_text_color, $div1_background_color, $div2_text_color, $div2_background_color, $label_text_color, $lottery, $lottery_input, $button_text, $button_background);
-		//$html_content2 = $this->getCheckerHTML();
-		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'checker.php';
-
 		return '<iframe src="/wp-content/plugins/sh-plugin/checker.php" width='.$a['width'].' height='.$a['height'].' frameborder=0></iframe>';
-		//return '<iframe srcdoc="'.htmlspecialchars($html_content2).'" width="' . $a['width'] . '" height="' . $a['height'] . ';" frameborder="0"></iframe>';
-
 	}
-
-	//add_action('wp_head_checker', 'custom_styles_checker');
 
 	public function css_checker() {
 		?>
@@ -280,7 +241,7 @@ class Sh_Plugin_Public {
 			background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(197,128,61,1) 50%, rgba(0,0,0,1) 100%);
 			/*background: <!--?php $div1_background_color; ?-->;*/
 			width: 100%;
-			color: <?php get_option('div1_text_color'); ?>;
+			color: <?php echo get_option('div1_text_color'); ?>;
 			padding: 0px;
 			padding-top: 25px;
 			padding-bottom: 25px;    
@@ -308,7 +269,7 @@ class Sh_Plugin_Public {
 			text-align: center;
 			padding: 50px 1px 1px 1px;
 			/* color: #ffc894; */
-			color: yellow;
+			color: <?php echo get_option('div2_text_color'); ?>;
 			font-family: "Kanit", sans-serif;
 			font-size: 26px;
 			width: 100%;
@@ -376,7 +337,8 @@ class Sh_Plugin_Public {
 	
 			lottery {
 			font-size: 24px;
-			color: #7c7c7c;
+			/* color: #7c7c7c; */
+			color: <?php echo get_option('lottery'); ?>!important;
 			font: weight 200px;
 			display: flex;
 			align-items: center;
@@ -412,7 +374,8 @@ class Sh_Plugin_Public {
 	
 			.lottery-input {
 			font-size: 24px;
-			color: #422102;
+			/* color: #422102; */
+			color: <?php echo get_option('lottery-input'); ?>!important;
 			font-weight: 200;
 			margin:auto;
 			width: 60%;
@@ -438,7 +401,8 @@ class Sh_Plugin_Public {
 			}
 	
 			input::placeholder {
-			color: #d1d1d1;
+			/* color: #d1d1d1; */
+			color: <?php echo get_option('lottery_input'); ?>!important;
 			letter-spacing: 0px;
 			}
 	
@@ -453,7 +417,7 @@ class Sh_Plugin_Public {
 	
 			#lottery-input:valid {
 			background-color: #c5803d;
-			color: #422102;
+			color: <?php echo get_option('lottery_input'); ?>!important;
 	
 			}
 	
@@ -484,8 +448,10 @@ class Sh_Plugin_Public {
 			width: 150px;
 			flex: 0 0 auto;
 			font-size: 16px;
-			color: #7c7c7c;
-			background-color: #000000;
+			/* color: #7c7c7c; */
+			color: <?php echo get_option('month_year_select_color'); ?>;
+			/* background-color: #000000; */
+			background-color: <?php echo get_option('month_year_select_bg'); ?>;
 			}
 	
 			@media (max-width: 767px) {
@@ -547,8 +513,11 @@ class Sh_Plugin_Public {
 			width: 100px;
 			flex: 0 0 auto;
 			font-size: 16px;
-			color: #7c7c7c;
-			background-color: #000000;
+			/* color: #7c7c7c; */
+			color: <?php echo get_option('month_year_select_color'); ?>;
+			/* background-color: #000000; */
+			background-color: <?php echo get_option('month_year_select_bg'); ?>;
+			/*background-color: #000000;*/
 			}
 	
 			@media only screen and (max-width: 600px) {
@@ -567,7 +536,8 @@ class Sh_Plugin_Public {
 			background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%);
 			/* box-shadow: 0 0 10px #9f9f9f; */
 			align-items: center;
-			color: #fff;
+			/* color: #fff; */
+			color: <?php echo get_option('button_text'); ?>;
 			font-size: 28px;
 			padding: 5px 70px;
 			margin-bottom: 40;
@@ -699,25 +669,3 @@ class Sh_Plugin_Public {
 		<?php
 	}
 }
-
-// //for checker
-// $div1_text_color = get_option('div1_text_color');
-// $month_year_select_bg = get_option('month_year_select_bg');
-// $div2_text_color = get_option('div2_text_color');
-// $month_year_select_color = get_option('month_year_select_color');
-// $label_text_color = get_option('label_text_color');
-// $lottery = get_option('lottery');
-// $lottery_input = get_option('lottery_input');
-// $button_text = get_option('button_text');
-// $button_background = get_option('button_background');
-
-// //for shower
-// $myBox_text_color = get_option('myBox_text_color');
-// $head_date = get_option('head_date');
-// $btnsh_color = get_option('btnsh_color');
-// $md_text = get_option('md_text');
-// $sm_text = get_option('sm_text');
-// $td_myDiv = get_option('td_myDiv');
-
-//echo $button_text.$button_background;
-
