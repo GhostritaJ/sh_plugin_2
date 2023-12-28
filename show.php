@@ -39,10 +39,28 @@
                 $err = curl_error($curl);
             
                 curl_close($curl);
-            
+
+                $fileName = "output.txt";
+
+                // ตรวจสอบว่าข้อมูลใน $dataToSave ไม่เหมือนกับข้อมูลในไฟล์
+                if (($response !== file_get_contents($fileName))&&(is_array($response))) {
+                    // บันทึกข้อมูลในไฟล์
+                    file_put_contents($fileName, $response);
+
+                    // ตรวจสอบว่าบันทึกสำเร็จหรือไม่
+                    if (file_exists($fileName)) {
+                        //echo "Download link: <a href='$fileName' download>Download File</a>";
+                    } else {
+                        //echo "Failed to save data to file.";
+                    }
+                } else {
+                    //echo "Data is the same, no need to download.";
+                }
+
                 if ($err) {
                     return "cURL Error #:" . $err;
                 } else {
+                    //var_dump($response);
                     $data = json_decode($response, true); // แปลง JSON เป็น associative array
                     if (is_array($data)) {
                         // ถ้า $data เป็น array ให้ทำการ loop และสร้าง HTML ตาราง
@@ -52,6 +70,8 @@
                         return "Error: Cannot decode JSON response from API.";
                     }
                 }
+
+                //var_dump($data);
                 return $data;
             }
             
@@ -59,7 +79,6 @@
                     //$url = 'https://thai-lottery1.p.rapidapi.com/?date=16052564';
 
                     $payload = sprintf("%02d%02d%4d",$day,$month,$year);
-                    //echo $payload;
                     $url = 'https://thai-lottery1.p.rapidapi.com/?date='.$payload;
                     $options = array(
                         'http' => array(
@@ -71,7 +90,6 @@
                     $response = file_get_contents($url, false, $context);
                     $data = json_decode($response, true);
 
-                    //print_r($data);
                     return $data;
             }
 
@@ -88,15 +106,11 @@
                     $yearNow = intval($year)+543;                       //get yearNow yearThai
                     $responseYear = array();
                     $responseYears = array();
-                    //print_r();
                     
                     $monthTh = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
                                 "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
-                ?>
-                
-                <?php 
-                    //var_dump($responseYear[$yearNow]) ;
-                    for($i=$yearNow;$i>2565;$i--){  
+ 
+                        $i = $yearNow;
                         $responseYear[$i] = select_for_show($i);   
                                                                     // value year
                         for($j=count($responseYear[$i])-1;$j>=0;$j--){   
@@ -106,15 +120,12 @@
                             $rpMonthInt = intval( $rpMonth[$i][$j]);
                             $idxMonth = $rpMonthInt -1;
                         }
-                    }
+
                 ?>
                 <?php
-                    //$yearNow = 2553;
-                    
                     $lastLotto = count($responseYear[$yearNow])-1;
                     $datas[$yearNow][$lastLotto] = list_price_win($yearNow, $rpMonth[$yearNow][$lastLotto], $rpDay[$yearNow][$lastLotto]);
                     $dataNow = $datas[$yearNow][$lastLotto];
-                    //print_r($dataNow);
                 ?>
 
                         <div class="table-responsive">
@@ -165,7 +176,7 @@
                                 </thead>
                                 <tr id="row1">
                                     <td>
-                                        <select id="year" name="year" class="form-control-year" onchange="work_flow()" required>
+                                        <select id="year" name="year" class="select_year" onchange="work_flow()" required>
                                             <?php
                                                 echo "<option value='' selected>ปี</option>";
                                                 // Generate options for year dropdown
@@ -183,7 +194,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="datemonth" id="datemonth" class="form-control-day-value" required>
+                                        <select name="datemonth" id="datemonth" class="select_date_month" required>
                                             <?php 
                                                 echo "<option value='' selected>วัน / เดือน</option>";
                                                 for($i=$yearNow;$i>2565;$i--){  

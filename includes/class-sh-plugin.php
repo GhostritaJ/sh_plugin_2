@@ -85,24 +85,6 @@ class Sh_Plugin {
 
 	}
 
-	/* function register_sub_menu() {
-		add_submenu_page( 
-			'options-general.php', 'Sh Plugin Design', 'Sh Plugin Design', 'manage_options', 'submenu-page', array(&$this, 'define_admin_hooks')
-		);
-	}
-
-	function wpdocs_register_my_custom_menu_page() {
-		add_menu_page(
-		  __( 'Custom Menu Title', 'textdomain' ),
-		  'custom menu',
-		  'manage_options',
-		  'myplugin/myplugin-admin.php',
-		  '',
-		  plugins_url( 'myplugin/images/icon.png' ),
-		  6
-		);
-	  }*/
-
 	/**
 	 * Load the required dependencies for this plugin.
 	 *

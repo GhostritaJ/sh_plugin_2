@@ -155,6 +155,16 @@ class Sh_Plugin_Public {
 				font-family: 'Kanit', sans-serif;
 			}
 
+			.select_year{
+				color: <?php echo get_option('select_date_color'); ?>;
+				background: <?php echo get_option('select_date_bg'); ?>;
+			}
+
+			.select_date_month{
+				color: <?php echo get_option('select_date_color'); ?>;
+				background: <?php echo get_option('select_date_bg'); ?>;
+			}
+
 			.btnsh{
 				/* color: white; */
 				color: <?php echo get_option('btnsh_color'); ?>;
@@ -166,7 +176,8 @@ class Sh_Plugin_Public {
 			.homesh{
 				/* background: rgb(224,224,224);
 				background: linear-gradient(247deg, rgba(224,224,224,1) 5%, rgba(255,255,255,1) 31%, rgba(255,255,255,1) 69%, rgba(226,226,226,1) 99%); */
-				background: #000000;
+				/* background: #000000; */
+				background: <?php echo get_option('bg_color_show'); ?>;
 				font-family: 'Kanit', sans-serif;
 			}
 
@@ -658,7 +669,9 @@ class Sh_Plugin_Public {
 			}
 	
 			body{
-			background: #000000;
+			/* background: #000000; */
+			background: <?php echo get_option('bg_color_checker'); ?>;
+			
 			}
 	
 			div.flex-container{

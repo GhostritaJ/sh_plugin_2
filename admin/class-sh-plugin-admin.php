@@ -116,6 +116,7 @@ class Sh_Plugin_Admin {
 
 	public function sh_plugin_register_settings(){
 		//for checker
+		register_setting('sh_plugin_options_group','bg_color_checker');
 		register_setting('sh_plugin_options_group','div1_text_color');
 		register_setting('sh_plugin_options_group','div2_text_color');
 		register_setting('sh_plugin_options_group','month_year_select_bg');
@@ -127,7 +128,10 @@ class Sh_Plugin_Admin {
 		register_setting('sh_plugin_options_group','button_background');
 
 		//for shower
+		register_setting('sh_plugin_options_group','bg_color_show');
 		register_setting('sh_plugin_options_group','myBox_text_color');
+		register_setting('sh_plugin_options_group','select_date_color');
+		register_setting('sh_plugin_options_group','select_date_bg');
 		register_setting('sh_plugin_options_group','head_date');
 		register_setting('sh_plugin_options_group','btnsh_color');
 		register_setting('sh_plugin_options_group','md_text');
@@ -152,7 +156,35 @@ class Sh_Plugin_Admin {
         do_settings_sections('sh_plugin_options_group');
       ?>
         <h3><b>Design Settings Checker</b></h3>
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+		<style>
+        #gradient-container {
+            width: 300px;
+            height: 50px;
+            border-radius: 5px;
+        }
+    	</style>
+		<script>
+			$(document).ready(function () {
+				var gradientContainer = $('#gradient-container');
+				var gradientSlider = $('#gradient-slider');
+
+				gradientSlider.on('input', function () {
+					var gradientValue = 'linear-gradient(to right, hsl(' + $(this).val() + ', 100%, 50%) 0%, hsl(' + ($(this).val() + 30) + ', 100%, 50%) 100%)';
+					gradientContainer.css('background', gradientValue);
+					// นำค่าสีมากำหนดให้กับ input
+					$('#bg_container').val(gradientValue);
+				});
+			});
+		</script>
         <table class="form-table">
+			<tr>
+                <th scope="row"><label for="bg_color_show">สีพื้นหลัง'</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="bg_color_checker" id="bg_color_checker"
+                    value="<?php echo get_option('bg_color_checker'); ?>">
+				</td>
+            </tr>
             <tr>
                 <th scope="row"><label for="div1_text_color">สีตัวอักษร ตรวจผลสลากกินแบ่งรัฐบาล'</label></th>
                 <td>
@@ -212,6 +244,13 @@ class Sh_Plugin_Admin {
 		<br>
 		<h3><b>Design Settings Shower</b></h3>
         <table class="form-table">
+			<tr>
+                <th scope="row"><label for="bg_color_show">สีพื้นหลัง'</label></th>
+                <td>
+					<input type="color" class="wp-color-picker" name="bg_color_show" id="bg_color_show"
+                    value="<?php echo get_option('bg_color_show'); ?>">
+				</td>
+            </tr>
             <tr>
                 <th scope="row"><label for="myBox_text_color">สีตัวอักษร งวด วันเดือนปี'</label></th>
                 <td>
@@ -219,11 +258,25 @@ class Sh_Plugin_Admin {
                     value="<?php echo get_option('myBox_text_color'); ?>">
 				</td>
             </tr>
-            <tr>
+			<tr>
                 <th scope="row"><label for="head_date">สีตัวอักษร หัวข้อ ปี-วัน/เดือน</label></th>
 				<td>
 					<input type="color" class="wp-color-picker" name="head_date" id="head_date"
 					value="<?php echo get_option('head_date'); ?>">
+				</td>
+            </tr>
+			<tr>
+                <th scope="row"><label for="select_date_color">สีตัวอักษร ตัวเลือก ปี-วัน/เดือน</label></th>
+				<td>
+					<input type="color" class="wp-color-picker" name="select_date_color" id="select_date_color"
+					value="<?php echo get_option('select_date_color'); ?>">
+				</td>
+            </tr>
+			<tr>
+                <th scope="row"><label for="select_date_bg">สีพื้นหลัง ตัวเลือก ปี-วัน/เดือน</label></th>
+				<td>
+					<input type="color" class="wp-color-picker" name="select_date_bg" id="select_date_bg"
+					value="<?php echo get_option('select_date_bg'); ?>">
 				</td>
             </tr>
 			<tr>
@@ -274,8 +327,8 @@ class Sh_Plugin_Admin {
                     value="<?php echo get_option('td_myDiv_bg_not'); ?>">
 				</td>
             </tr>
-			
         </table>
+		
         <?php submit_button(); ?>
     </form>
 </div>
