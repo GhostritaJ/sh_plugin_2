@@ -127,8 +127,10 @@ class Sh_Plugin_Public {
 					// .sm-text : small title size
 			?>
 			.myDivH {
-				background: rgb(0,0,0);
-				background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%);
+				/* background: rgb(0,0,0);
+				background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%); */
+				<?php echo get_option('myDivH_bg'); ?>;
+
 				padding: 10px;
 				font-family: 'Kanit', sans-serif;
 				width: 100%;
@@ -148,8 +150,9 @@ class Sh_Plugin_Public {
 				font-size: 24px;
 				/* color: white; */
 				color: <?php echo get_option('myBox_text_color'); ?>;
-				background: rgb(0,0,0);
-				background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(197,128,61,1) 50%, rgba(0,0,0,1) 100%);
+				/* background: rgb(0,0,0);
+				background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(197,128,61,1) 50%, rgba(0,0,0,1) 100%); */
+				<?php echo get_option('myBox_bg'); ?>;
 				padding-top: 25px;
 				padding-bottom: 25px;     
 				font-family: 'Kanit', sans-serif;
@@ -168,8 +171,9 @@ class Sh_Plugin_Public {
 			.btnsh{
 				/* color: white; */
 				color: <?php echo get_option('btnsh_color'); ?>;
-				background: rgb(0,0,0);
-				background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%);
+				/* background: rgb(0,0,0);
+				background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%); */
+				<?php echo get_option('btnsh_bg'); ?>
 				font-family: 'Kanit', sans-serif;
 			}
 
@@ -210,11 +214,11 @@ class Sh_Plugin_Public {
 				
 			}
 			td.myDiv:hover {
-				background-color: <?php echo get_option('td_myDiv_bg'); ?>!important; 					/* สีพื้นหลังเลขที่ถูกเม้าส์ชี้ */
+				<?php echo get_option('td_myDiv_bg'); ?>; 					/* สีพื้นหลังเลขที่ถูกเม้าส์ชี้ */
 				color: <?php echo get_option('td_myDiv'); ?>!important; 								/* สีตัวเลขที่ถูกเม้าส์ชี้ */
 			}
 			td.myDiv:not(:hover) {
-				background-color: <?php echo get_option('td_myDiv_bg_not'); ?>!important; 				/* สีที่ไม่ได้ถูกเม้าส์ชี้ */
+				<?php echo get_option('td_myDiv_bg_not'); ?>; 				/* สีที่ไม่ได้ถูกเม้าส์ชี้ */
 				color: <?php echo get_option('td_myDiv_text_not'); ?>!important; 						/* หรือสีอื่น ๆ ที่คุณต้องการให้เหมือนตัวอย่าง */
 			}
 			@media (max-width: 375px) {
@@ -248,9 +252,9 @@ class Sh_Plugin_Public {
 	
 			display: block;
 			/* margin: auto; */
-			background: rgb(0,0,0);
-			background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(197,128,61,1) 50%, rgba(0,0,0,1) 100%);
-			/*background: <!--?php $div1_background_color; ?-->;*/
+			/* background: rgb(0,0,0);
+			background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(197,128,61,1) 50%, rgba(0,0,0,1) 100%); */
+			<?php echo get_option('div1_bg'); ?>
 			width: 100%;
 			color: <?php echo get_option('div1_text_color'); ?>;
 			padding: 0px;
@@ -286,8 +290,9 @@ class Sh_Plugin_Public {
 			width: 100%;
 			height: 20px;
 			margin: 0px auto;
-			background: rgb(0,0,0);
-			background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%);
+			/* background: rgb(0,0,0);
+			background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%); */
+			<?php echo get_option('div2_bg'); ?>
 			}
 	
 			@media (max-width: 767px) {
@@ -386,7 +391,7 @@ class Sh_Plugin_Public {
 			.lottery-input {
 			font-size: 24px;
 			/* color: #422102; */
-			color: <?php echo get_option('lottery-input'); ?>!important;
+			color: <?php echo get_option('lottery_input'); ?>!important;
 			font-weight: 200;
 			margin:auto;
 			width: 60%;
@@ -401,8 +406,9 @@ class Sh_Plugin_Public {
 			font-size: 24px;
 			font-weight: bold;
 			color: #FFFFFF;
-			background: rgb(0,0,0);
-			background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%);
+			/* background: rgb(0,0,0);
+			background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%); */
+			<?php echo get_option('lottery_input_bg'); ?>
 			font-family: "Kanit", sans-serif;
 			justify-content: center;
 			align-items: center;
@@ -448,6 +454,9 @@ class Sh_Plugin_Public {
 			justify-content: center;
 			align-items: center;
 			margin: 50px 1px 40px 1px;
+			/* background: rgb(0,0,0);
+			background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%); */
+			<?php echo get_option('month_year_bg'); ?>
 			}
 	
 			.month-select {
@@ -571,8 +580,10 @@ class Sh_Plugin_Public {
 			}
 	
 			button:focus {
-			background: rgb(187, 255, 253);
-			background: linear-gradient(297deg, rgba(187, 255, 253, 1) 11%, rgba(41, 132, 180, 1) 31%, rgba(0, 95, 181, 1) 64%, rgba(46, 184, 200, 1) 100%);
+			/* background: rgb(187, 255, 253);
+			background: linear-gradient(297deg, rgba(187, 255, 253, 1) 11%, rgba(41, 132, 180, 1) 31%, rgba(0, 95, 181, 1) 64%, rgba(46, 184, 200, 1) 100%); */
+			<?php echo get_option('button_checker_bg'); ?>
+			
 			color: #ffffff;
 			box-shadow: 0 0 30px #ebd58b;
 			transform: scale(0.9);
@@ -583,8 +594,9 @@ class Sh_Plugin_Public {
 			}
 	
 			button:active {                                 /* สีเมื่อปุ่มถูกกด (active) */
-			background: rgb(174,136,84);
-			background: linear-gradient(45deg, rgba(174,136,84,1) 0%, rgba(235,213,139,1) 51%, rgba(142,82,10,1) 100%);
+			/* background: rgb(174,136,84);
+			background: linear-gradient(45deg, rgba(174,136,84,1) 0%, rgba(235,213,139,1) 51%, rgba(142,82,10,1) 100%); */
+			<?php echo get_option('button_checker_bg_active'); ?>
 			}
 	
 			body {
@@ -674,10 +686,11 @@ class Sh_Plugin_Public {
 			
 			}
 	
-			div.flex-container{
+			/*div.flex-container{
 			background: rgb(0,0,0);
 			background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%);
-			}
+			month_year_bg
+			}*/
 		</style>
 		<?php
 	}
