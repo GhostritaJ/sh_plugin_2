@@ -281,14 +281,14 @@ class Sh_Plugin_Admin {
 				</td>
             </tr>
 			<tr>
-                <th scope="row"><label for="button_checker_bg">สีตัวอักษร ในปุ่ม</label></th>
+                <th scope="row"><label for="button_checker_bg">สีพื้นหลัง ในปุ่ม</label></th>
                 <td>
 					<input type="textbox" name="button_checker_bg" id="button_checker_bg" style="width: 800px; height: 50px;"
                     value="<?php echo get_option('button_checker_bg'); ?>">
 				</td>
             </tr>
 			<tr>
-                <th scope="row"><label for="button_checker_bg_active">สีตัวอักษร ในปุ่ม</label></th>
+                <th scope="row"><label for="button_checker_bg_active">สีพื้นหลัง ในปุ่ม ตอนกด</label></th>
                 <td>
 					<input type="textbox" name="button_checker_bg_active" id="button_checker_bg_active" style="width: 800px; height: 50px;"
                     value="<?php echo get_option('button_checker_bg_active'); ?>">
@@ -337,7 +337,7 @@ class Sh_Plugin_Admin {
 			<tr>
                 <th scope="row"><label for="select_date_bg">สีพื้นหลัง ตัวเลือก ปี-วัน/เดือน</label></th>
 				<td>
-					<input type="color" class="wp-color-picker" name="select_date_bg" id="select_date_bg"
+					<input type="textbox" name="select_date_bg" id="select_date_bg" style="width: 800px; height: 50px;"
 					value="<?php echo get_option('select_date_bg'); ?>">
 				</td>
             </tr>

@@ -181,7 +181,7 @@ class Sh_Plugin_Public {
 				/* background: rgb(224,224,224);
 				background: linear-gradient(247deg, rgba(224,224,224,1) 5%, rgba(255,255,255,1) 31%, rgba(255,255,255,1) 69%, rgba(226,226,226,1) 99%); */
 				/* background: #000000; */
-				background: <?php echo get_option('bg_color_show'); ?>;
+				<?php echo get_option('bg_color_show'); ?>
 				font-family: 'Kanit', sans-serif;
 			}
 
@@ -471,7 +471,7 @@ class Sh_Plugin_Public {
 			/* color: #7c7c7c; */
 			color: <?php echo get_option('month_year_select_color'); ?>;
 			/* background-color: #000000; */
-			background-color: <?php echo get_option('month_year_select_bg'); ?>;
+			<?php echo get_option('month_year_select_bg'); ?>
 			}
 	
 			@media (max-width: 767px) {
@@ -536,7 +536,7 @@ class Sh_Plugin_Public {
 			/* color: #7c7c7c; */
 			color: <?php echo get_option('month_year_select_color'); ?>;
 			/* background-color: #000000; */
-			background-color: <?php echo get_option('month_year_select_bg'); ?>;
+			<?php echo get_option('month_year_select_bg'); ?>
 			/*background-color: #000000;*/
 			}
 	
@@ -603,7 +603,7 @@ class Sh_Plugin_Public {
 			background-color: rgb(201, 201, 201);
 			background: linear-gradient(90deg, rgba(201, 201, 201, 1) 0%, rgba(255, 255, 255, 1) 19%, rgba(255, 255, 255, 1) 49%, rgba(255, 255, 255, 1) 80%, rgba(201, 201, 201, 1) 100%);
 			font-family: "Kanit", sans-serif;
-			background: #ffffff;
+			/* background: #ffffff; */
 			color: #34495e;
 			}
 			}
@@ -682,7 +682,7 @@ class Sh_Plugin_Public {
 	
 			body{
 			/* background: #000000; */
-			background: <?php echo get_option('bg_color_checker'); ?>;
+			<?php echo get_option('bg_color_checker'); ?>
 			
 			}
 	
