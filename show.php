@@ -13,6 +13,11 @@
             $version = "1.2";
             $sh_plugin = new Sh_Plugin_Public($plugin_name, $version);
             $sh_plugin->css_shower();
+
+            date_default_timezone_set('asia/bangkok');                  
+            $year = date('Y');                                  // 2023,2024
+            //echo $year;
+            $yearNow = intval($year)+543;                       //get yearNow yearThai
         ?>
 
         <?php
@@ -37,6 +42,7 @@
             
                 $response = curl_exec($curl);
                 $err = curl_error($curl);
+                var_dump($response);
             
                 curl_close($curl);
 
@@ -71,7 +77,7 @@
                     }
                 }
 
-                //var_dump($data);
+                var_dump($data);
                 return $data;
             }
             
@@ -101,29 +107,30 @@
         <div id="page" class="hfeed site">
             <div id="main" class="clearfix">
                 <?php
-                    date_default_timezone_set('asia/bangkok');                  
-                    $year = date('Y');                                  // 2023
-                    $yearNow = intval($year)+543;                       //get yearNow yearThai
+                    
                     $responseYear = array();
                     $responseYears = array();
                     
                     $monthTh = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
                                 "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
  
-                        $i = $yearNow;
-                        $responseYear[$i] = select_for_show($i);   
-                                                                    // value year
-                        for($j=count($responseYear[$i])-1;$j>=0;$j--){   
-                            $rpDay[$i][$j] = substr($responseYear[$i][$j],0,2); 
-                            $rpADay = $rpDay[$i][$j];
-                            $rpMonth[$i][$j] = substr($responseYear[$i][$j],2,2);
-                            $rpMonthInt = intval( $rpMonth[$i][$j]);
-                            $idxMonth = $rpMonthInt -1;
-                        }
+                    $i = $yearNow;
+                    $responseYear[$i] = select_for_show($i);            // value year
+                    echo count($responseYear[$yearNow]);
+                    var_dump($responseYear);
+                    
+                    for($j=count($responseYear[$i])-1;$j>=0;$j--){   
+                        $rpDay[$i][$j] = substr($responseYear[$i][$j],0,2); 
+                        $rpADay = $rpDay[$i][$j];
+                        $rpMonth[$i][$j] = substr($responseYear[$i][$j],2,2);
+                        $rpMonthInt = intval( $rpMonth[$i][$j]);
+                        $idxMonth = $rpMonthInt -1;
+                    }
 
                 ?>
                 <?php
                     $lastLotto = count($responseYear[$yearNow])-1;
+                    echo $lastLotto;
                     $datas[$yearNow][$lastLotto] = list_price_win($yearNow, $rpMonth[$yearNow][$lastLotto], $rpDay[$yearNow][$lastLotto]);
                     $dataNow = $datas[$yearNow][$lastLotto];
                 ?>
@@ -421,10 +428,6 @@
             </div>
         </div>
     </body>    
-        <?php
-            //select_for_show();
-           // echo count($responseYears);
-        ?>
         
         <link rel="stylesheet" href="https://www.lottery.co.th/style.min2020.css" type="text/css"/>
 

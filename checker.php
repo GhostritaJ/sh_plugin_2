@@ -21,6 +21,7 @@
         $version = "1.2";
         $sh_plugin = new Sh_Plugin_Public($plugin_name, $version);
         $sh_plugin->css_checker();
+        $year = date('Y')+543;
     ?>
 </head>
 <body>
@@ -186,25 +187,22 @@
                         <label for="year" class="label-year">พ.ศ.</label>
                         <select id="year" name="year" class="year-select" onchange="work_flow()" required>
                             <option value="">--โปรดเลือก--</option>
-                            <option value="2548">2548</option>
-                            <option value="2549">2549</option>
-                            <option value="2550">2550</option>
-                            <option value="2551">2551</option>
-                            <option value="2552">2552</option>
-                            <option value="2553">2553</option>
-                            <option value="2554">2554</option>
-                            <option value="2555">2555</option>
-                            <option value="2556">2556</option>
-                            <option value="2557">2557</option>
-                            <option value="2558">2558</option>
-                            <option value="2559">2559</option>
-                            <option value="2560">2560</option>
-                            <option value="2561">2561</option>
-                            <option value="2562">2562</option>
-                            <option value="2563">2563</option>
-                            <option value="2564">2564</option>
-                            <option value="2565">2565</option>
-                            <option value="2566">2566</option>
+                            <option value="<?php echo $year-15;?>"><?php echo $year-15;?></option>
+                            <option value="<?php echo $year-14;?>"><?php echo $year-14;?></option>
+                            <option value="<?php echo $year-13;?>"><?php echo $year-13;?></option>
+                            <option value="<?php echo $year-12;?>"><?php echo $year-12;?></option>
+                            <option value="<?php echo $year-11;?>"><?php echo $year-11;?></option>
+                            <option value="<?php echo $year-10;?>"><?php echo $year-10;?></option>
+                            <option value="<?php echo $year-9;?>"><?php echo $year-9;?></option>
+                            <option value="<?php echo $year-8;?>"><?php echo $year-8;?></option>
+                            <option value="<?php echo $year-7;?>"><?php echo $year-7;?></option>
+                            <option value="<?php echo $year-6;?>"><?php echo $year-6;?></option>
+                            <option value="<?php echo $year-5;?>"><?php echo $year-5;?></option>
+                            <option value="<?php echo $year-4;?>"><?php echo $year-4;?></option>
+                            <option value="<?php echo $year-3;?>"><?php echo $year-3;?></option>
+                            <option value="<?php echo $year-2;?>"><?php echo $year-2;?></option>
+                            <option value="<?php echo $year-1;?>"><?php echo $year-1;?></option>
+                            <option value="<?php echo $year;?>"><?php echo $year;?></option>
                         </select>
                 </div>
                 <div class="flex-item">

@@ -118,14 +118,6 @@ class Sh_Plugin_Public {
 	public function css_shower() {
 		?>
 		<style>
-			<?php   // .myDiv : color number won prize lotto
-					// .myDivH : bg color number won prize lotto
-					// .myBox : box for show date month selected
-					// .btnsh : color button
-					// .homesh : bg color title
-					// .md-text : title size
-					// .sm-text : small title size
-			?>
 			.myDivH {
 				/* background: rgb(0,0,0);
 				background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%); */
@@ -215,11 +207,15 @@ class Sh_Plugin_Public {
 			}
 			td.myDiv:hover {
 				<?php echo get_option('td_myDiv_bg'); ?>; 					/* สีพื้นหลังเลขที่ถูกเม้าส์ชี้ */
-				color: <?php echo get_option('td_myDiv'); ?>!important; 								/* สีตัวเลขที่ถูกเม้าส์ชี้ */
+				color: <?php echo get_option('td_myDiv_text'); ?>!important; 								/* สีตัวเลขที่ถูกเม้าส์ชี้ */
 			}
 			td.myDiv:not(:hover) {
 				<?php echo get_option('td_myDiv_bg_not'); ?>; 				/* สีที่ไม่ได้ถูกเม้าส์ชี้ */
 				color: <?php echo get_option('td_myDiv_text_not'); ?>!important; 						/* หรือสีอื่น ๆ ที่คุณต้องการให้เหมือนตัวอย่าง */
+			}
+			tr:hover td.myDiv:not(:hover) {
+				<?php echo get_option('td_myDiv_bg_not_not2'); ?>; 				/* สีพื้นหลังข้อมูลอื่นในแถวที่ถูกเม้าส์ชี้ */;
+				color: <?php echo get_option('td_myDiv_text_not2'); ?>!important; 								/* สีข้อความข้อมูลอื่นในแถวที่ถูกเม้าส์ชี้ */
 			}
 			@media (max-width: 375px) {
 				.xxx{
@@ -552,8 +548,9 @@ class Sh_Plugin_Public {
 	
 	
 			button {
-			background: rgb(0,0,0);
-			background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%);
+			/* background: rgb(0,0,0);
+			background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%); */
+			<?php echo get_option('button_checker_bg'); ?>
 			/* box-shadow: 0 0 10px #9f9f9f; */
 			align-items: center;
 			/* color: #fff; */
@@ -580,9 +577,9 @@ class Sh_Plugin_Public {
 			}
 	
 			button:focus {
-			/* background: rgb(187, 255, 253);
-			background: linear-gradient(297deg, rgba(187, 255, 253, 1) 11%, rgba(41, 132, 180, 1) 31%, rgba(0, 95, 181, 1) 64%, rgba(46, 184, 200, 1) 100%); */
-			<?php echo get_option('button_checker_bg'); ?>
+			background: rgb(187, 255, 253);
+			background: linear-gradient(297deg, rgba(187, 255, 253, 1) 11%, rgba(41, 132, 180, 1) 31%, rgba(0, 95, 181, 1) 64%, rgba(46, 184, 200, 1) 100%);
+			
 			
 			color: #ffffff;
 			box-shadow: 0 0 30px #ebd58b;
