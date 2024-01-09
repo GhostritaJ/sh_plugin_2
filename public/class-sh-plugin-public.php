@@ -118,6 +118,7 @@ class Sh_Plugin_Public {
 	public function css_shower() {
 		?>
 		<style>
+
 			.myDivH {
 				/* background: rgb(0,0,0);
 				background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%); */
@@ -132,7 +133,7 @@ class Sh_Plugin_Public {
 			.myDiv {
 				/* border: 2px outset #3b3b3b; */
 				background: #000000;
-				color: white;
+				/* color: white; */
 				padding-top: 6px;
 				padding-bottom: 6px;
 				font-family: 'Kanit', sans-serif;
@@ -152,12 +153,12 @@ class Sh_Plugin_Public {
 
 			.select_year{
 				color: <?php echo get_option('select_date_color'); ?>;
-				background: <?php echo get_option('select_date_bg'); ?>;
+				/* background: <?php /* echo get_option('select_date_bg'); */ ?>; */
 			}
 
 			.select_date_month{
 				color: <?php echo get_option('select_date_color'); ?>;
-				background: <?php echo get_option('select_date_bg'); ?>;
+				/* background: <?php /* echo get_option('select_date_bg'); */ ?>; */
 			}
 
 			.btnsh{
@@ -167,6 +168,7 @@ class Sh_Plugin_Public {
 				background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%); */
 				<?php echo get_option('btnsh_bg'); ?>
 				font-family: 'Kanit', sans-serif;
+				border-radius: 10px;
 			}
 
 			.homesh{
@@ -203,19 +205,12 @@ class Sh_Plugin_Public {
 				border-top: 0px!important;
 			}
 			tr{
-				
+				text-align: center;
+				color: <?php echo get_option('td_myDiv_text_not'); ?>!important;
 			}
-			td.myDiv:hover {
-				<?php echo get_option('td_myDiv_bg'); ?>; 					/* สีพื้นหลังเลขที่ถูกเม้าส์ชี้ */
-				color: <?php echo get_option('td_myDiv_text'); ?>!important; 								/* สีตัวเลขที่ถูกเม้าส์ชี้ */
-			}
-			td.myDiv:not(:hover) {
+			td.myDiv {
 				<?php echo get_option('td_myDiv_bg_not'); ?>; 				/* สีที่ไม่ได้ถูกเม้าส์ชี้ */
-				color: <?php echo get_option('td_myDiv_text_not'); ?>!important; 						/* หรือสีอื่น ๆ ที่คุณต้องการให้เหมือนตัวอย่าง */
-			}
-			tr:hover td.myDiv:not(:hover) {
-				<?php echo get_option('td_myDiv_bg_not_not2'); ?>; 				/* สีพื้นหลังข้อมูลอื่นในแถวที่ถูกเม้าส์ชี้ */;
-				color: <?php echo get_option('td_myDiv_text_not2'); ?>!important; 								/* สีข้อความข้อมูลอื่นในแถวที่ถูกเม้าส์ชี้ */
+				
 			}
 			@media (max-width: 375px) {
 				.xxx{
@@ -226,6 +221,10 @@ class Sh_Plugin_Public {
 			thead.head-date{
 				/* color: #ffc894; */
 				color: <?php echo get_option('head_date'); ?>;
+			}
+
+			.table1{
+				width: 100%;
 			}
 			
 		</style>
@@ -288,7 +287,7 @@ class Sh_Plugin_Public {
 			margin: 0px auto;
 			/* background: rgb(0,0,0);
 			background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(52,30,8,1) 50%, rgba(0,0,0,1) 100%); */
-			<?php echo get_option('div2_bg'); ?>
+			/* php echo get_option('div2_bg'); */
 			}
 	
 			@media (max-width: 767px) {
@@ -376,7 +375,7 @@ class Sh_Plugin_Public {
 			}
 			.lotto_formss {
 			display: block;
-			background: #000000
+			/*background: #000000;*/
 			}
 	
 			.lotto_formss input{
@@ -389,7 +388,7 @@ class Sh_Plugin_Public {
 			/* color: #422102; */
 			color: <?php echo get_option('lottery_input'); ?>!important;
 			font-weight: 200;
-			margin:auto;
+			margin: auto;
 			width: 60%;
 			height: 50px;
 	
@@ -488,7 +487,8 @@ class Sh_Plugin_Public {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			color: #7c7c7c;
+			/* color: #7c7c7c; */
+			color: <?php echo get_option('label_text_color'); ?>; 
 			flex: 0 0 auto;
 			}
 	
@@ -512,7 +512,8 @@ class Sh_Plugin_Public {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			color: #7c7c7c;
+			/* color: #7c7c7c; */
+			color: <?php echo get_option('label_text_color'); ?>; 
 			flex: 0 0 auto;
 			}
 	
@@ -558,7 +559,7 @@ class Sh_Plugin_Public {
 			font-size: 28px;
 			padding: 5px 70px;
 			margin-bottom: 40;
-			border-radius: 0px;
+			border-radius: 10px;
 			font-family: "Kanit", sans-serif;
 			display: flex;
 			justify-content: center;
@@ -571,38 +572,37 @@ class Sh_Plugin_Public {
 			}
 	
 			@media screen and (max-width: 768px) {
-			button {
-			font-size: 20px;
-			padding: 5px 50px;
-			}
-	
-			button:focus {
-			background: rgb(187, 255, 253);
-			background: linear-gradient(297deg, rgba(187, 255, 253, 1) 11%, rgba(41, 132, 180, 1) 31%, rgba(0, 95, 181, 1) 64%, rgba(46, 184, 200, 1) 100%);
-			
-			
-			color: #ffffff;
-			box-shadow: 0 0 30px #ebd58b;
-			transform: scale(0.9);
-			}
-	
-			button:hover {                                  /* สีเมื่อเมาส์ชี้ (hover) ไปที่ปุ่ม */
-			background-color: #2980b9;
-			}
-	
-			button:active {                                 /* สีเมื่อปุ่มถูกกด (active) */
-			/* background: rgb(174,136,84);
-			background: linear-gradient(45deg, rgba(174,136,84,1) 0%, rgba(235,213,139,1) 51%, rgba(142,82,10,1) 100%); */
-			<?php echo get_option('button_checker_bg_active'); ?>
-			}
-	
-			body {
-			background-color: rgb(201, 201, 201);
-			background: linear-gradient(90deg, rgba(201, 201, 201, 1) 0%, rgba(255, 255, 255, 1) 19%, rgba(255, 255, 255, 1) 49%, rgba(255, 255, 255, 1) 80%, rgba(201, 201, 201, 1) 100%);
-			font-family: "Kanit", sans-serif;
-			/* background: #ffffff; */
-			color: #34495e;
-			}
+				button {
+					font-size: 20px;
+					padding: 5px 50px;
+				}
+		
+				button:focus {
+					background: rgb(187, 255, 253);
+					background: linear-gradient(297deg, rgba(187, 255, 253, 1) 11%, rgba(41, 132, 180, 1) 31%, rgba(0, 95, 181, 1) 64%, rgba(46, 184, 200, 1) 100%);
+					color: #ffffff;
+					box-shadow: 0 0 30px #ebd58b;
+					transform: scale(0.9);
+				}
+		
+				button:hover {                                  /* สีเมื่อเมาส์ชี้ (hover) ไปที่ปุ่ม */
+					/* background-color: #2980b9; */
+					<?php echo get_option('button_checker_bg_point'); ?>
+				}
+		
+				button:active {                                 /* สีเมื่อปุ่มถูกกด (active) */
+					/* background: rgb(174,136,84);
+					background: linear-gradient(45deg, rgba(174,136,84,1) 0%, rgba(235,213,139,1) 51%, rgba(142,82,10,1) 100%); */
+					<?php echo get_option('button_checker_bg_active'); ?>
+				}
+		
+				body {
+					background-color: rgb(201, 201, 201);
+					background: linear-gradient(90deg, rgba(201, 201, 201, 1) 0%, rgba(255, 255, 255, 1) 19%, rgba(255, 255, 255, 1) 49%, rgba(255, 255, 255, 1) 80%, rgba(201, 201, 201, 1) 100%);
+					font-family: "Kanit", sans-serif;
+					/* background: #ffffff; */
+					color: #34495e;
+				}
 			}
 	
 	

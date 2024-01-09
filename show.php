@@ -1,4 +1,5 @@
-<?php require(dirname(__FILE__) . '/../../../wp-config.php'); ?>
+    <head>
+        <?php require(dirname(__FILE__) . '/../../../wp-config.php'); ?>
    
             <?php 
                     set_time_limit(400);
@@ -7,7 +8,49 @@
         <!-- font Kanit -->
         <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet"/>
 
-        <!-- CSS -->
+        <!--link href="bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"-->
+
+        <style>
+            .loading {
+                position: fixed;
+                top: 15%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: rgba(255, 255, 255, 0.8);
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                display: none;
+            }
+
+            .lds-dual-ring {
+                display: inline-block;
+                width: 80px;
+                height: 80px;
+                margin-top: -50px;
+            }
+            .lds-dual-ring:after {
+                content: " ";
+                display: block;
+                width: 64px;
+                height: 64px;
+                margin: 8px;
+                border-radius: 50%;
+                border: 6px solid #cef;
+                border-color: #cef transparent #cef transparent;
+                animation: lds-dual-ring 1.2s linear infinite;
+            }
+            @keyframes lds-dual-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+            }
+
+        </style>
+        
         <?php
             $plugin_name = "Sh_Plugin_Checker";
             $version = "1.2";
@@ -16,8 +59,17 @@
 
             date_default_timezone_set('asia/bangkok');                  
             $year = date('Y');                                  // 2023,2024
-            //echo $year;
-            $yearNow = intval($year)+543;                       //get yearNow yearThai
+            $month = date('m');
+            $day = date('d');
+            //echo $day.$month;
+            if($day<16 && $month==1){
+                //echo '000';
+                $yearNow = intval($year)+543-1;
+            }else{
+                $yearNow = intval($year)+543;
+            }
+            //echo $yearNow;
+            
         ?>
 
         <?php
@@ -42,25 +94,81 @@
             
                 $response = curl_exec($curl);
                 $err = curl_error($curl);
-                var_dump($response);
+                //print_r($response);
             
                 curl_close($curl);
 
-                $fileName = "output.txt";
+                $fileName = "output_".$yearNow.".txt";
+                $files;
+                //echo '123';
 
-                // ตรวจสอบว่าข้อมูลใน $dataToSave ไม่เหมือนกับข้อมูลในไฟล์
-                if (($response !== file_get_contents($fileName))&&(is_array($response))) {
-                    // บันทึกข้อมูลในไฟล์
-                    file_put_contents($fileName, $response);
+                if($response==NULL){
+                    $curl = curl_init();
+                    
+                    curl_setopt_array($curl, [
+                        CURLOPT_URL => "https://thai-lottery1.p.rapidapi.com/gdpy?year=$yearNow-1",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "GET",
+                        CURLOPT_HTTPHEADER => [
+                            "X-RapidAPI-Host: thai-lottery1.p.rapidapi.com",
+                            "X-RapidAPI-Key: be72945233msha7f60a56f8df87ep18f7bcjsn366b4116954e",
+                            "content-type: application/octet-stream"
+                        ],
+                    ]);
+            
+                    $response = curl_exec($curl);
+                    $err = curl_error($curl);
+                    //print_r($response);
+                
+                    curl_close($curl);
 
-                    // ตรวจสอบว่าบันทึกสำเร็จหรือไม่
-                    if (file_exists($fileName)) {
-                        //echo "Download link: <a href='$fileName' download>Download File</a>";
-                    } else {
-                        //echo "Failed to save data to file.";
+                    if(file_exists($fileName) && is_array($response)){
+                        
+                        if (($response !== file_get_contents($fileName))&&(is_array($response))) {
+                            
+                            // บันทึกข้อมูลในไฟล์
+                            file_put_contents($fileName, $response);
+                            //echo $files;
+                            // ตรวจสอบว่าบันทึกสำเร็จหรือไม่
+                            if (file_exists($fileName)) {
+                                
+                                echo "Download link: <a href='$fileName' download>Download File</a>";
+                            } else {
+                                echo "Failed to save data to file.";
+                            }
+                        } else {
+                            echo "Data is the same, no need to download.";
+                        }
+                    }else if(is_array($response)){
+                        file_put_contents($fileName, $response);
+                        echo "บันทึกข้อมูลเรียบร้อยแล้วในไฟล์ $fileName";
                     }
-                } else {
-                    //echo "Data is the same, no need to download.";
+                }else{
+                    if(file_exists($fileName) && is_array($response)){
+                    
+                        if (($response !== file_get_contents($fileName))&&(is_array($response))) {
+                            
+                            // บันทึกข้อมูลในไฟล์
+                            file_put_contents($fileName, $response);
+                            //echo $files;
+                            // ตรวจสอบว่าบันทึกสำเร็จหรือไม่
+                            if (file_exists($fileName)) {
+                                
+                                echo "Download link: <a href='$fileName' download>Download File</a>";
+                            } else {
+                                echo "Failed to save data to file.";
+                            }
+                        } else {
+                            echo "Data is the same, no need to download.";
+                        }
+                    }else if(is_array($response)){
+                        file_put_contents($fileName, $response);
+                        echo "บันทึกข้อมูลเรียบร้อยแล้วในไฟล์ $fileName";
+                    }
                 }
 
                 if ($err) {
@@ -68,8 +176,10 @@
                 } else {
                     //var_dump($response);
                     $data = json_decode($response, true); // แปลง JSON เป็น associative array
+                    //var_dump($data);
                     if (is_array($data)) {
                         // ถ้า $data เป็น array ให้ทำการ loop และสร้าง HTML ตาราง
+                        
                         return $data;
                     } else {
                         // ถ้า $data ไม่ใช่ array ให้ส่ง error message กลับไปแสดงผล
@@ -77,8 +187,8 @@
                     }
                 }
 
-                var_dump($data);
-                return $data;
+                
+                //return $data;
             }
             
             function list_price_win($year, $month, $day){
@@ -103,34 +213,55 @@
         ?>
     </head>
             
-    <body class="homesh blog  wide">
+    <body class="homesh blog wide" onload="ativeShowPage()">
         <div id="page" class="hfeed site">
             <div id="main" class="clearfix">
                 <?php
                     
                     $responseYear = array();
                     $responseYears = array();
-                    
+                    $fileName = "output.txt";
+                    $files = file_get_contents($fileName);
+                    $array_files = json_decode($files);
+                    //print_r($array_files);
                     $monthTh = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
                                 "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
  
                     $i = $yearNow;
                     $responseYear[$i] = select_for_show($i);            // value year
-                    echo count($responseYear[$yearNow]);
-                    var_dump($responseYear);
+                    //$responseYears = print_r($array_files);
+                    //echo count($array_files);
                     
-                    for($j=count($responseYear[$i])-1;$j>=0;$j--){   
-                        $rpDay[$i][$j] = substr($responseYear[$i][$j],0,2); 
-                        $rpADay = $rpDay[$i][$j];
-                        $rpMonth[$i][$j] = substr($responseYear[$i][$j],2,2);
-                        $rpMonthInt = intval( $rpMonth[$i][$j]);
-                        $idxMonth = $rpMonthInt -1;
+                    //echo count($responseYear[$yearNow]);
+                    //var_dump($responseYear);
+                    //var_dump($array_files);
+                    if($responseYear[$i] == NULL){
+                        
+                        for($j=count($array_files)-1;$j>=0;$j--){   
+                            //echo $i;
+                            $rpDay[$i][$j] = substr($array_files[$j],0,2); 
+                            $rpADay = $rpDay[$i][$j];
+                            $rpMonth[$i][$j] = substr($array_files[$j],2,2);
+                            $rpMonthInt = intval( $rpMonth[$i][$j]);
+                            $idxMonth = $rpMonthInt -1;
+                        }
+                    }else{
+                        for($j=count($array_files)-1;$j>=0;$j--){   
+                            $rpDay[$i][$j] = substr($array_files[$j],0,2); 
+                            $rpADay = $rpDay[$i][$j];
+                            $rpMonth[$i][$j] = substr($array_files[$j],2,2);
+                            $rpMonthInt = intval( $rpMonth[$i][$j]);
+                            $idxMonth = $rpMonthInt -1;
                     }
+                    }
+                    
+                    
 
                 ?>
                 <?php
-                    $lastLotto = count($responseYear[$yearNow])-1;
-                    echo $lastLotto;
+                    $lastLotto = count($array_files)-1;
+                    //$lastLotto = count($responseYear[$yearNow])-1;
+                    //echo $lastLotto;
                     $datas[$yearNow][$lastLotto] = list_price_win($yearNow, $rpMonth[$yearNow][$lastLotto], $rpDay[$yearNow][$lastLotto]);
                     $dataNow = $datas[$yearNow][$lastLotto];
                 ?>
@@ -173,7 +304,7 @@
                         </div>
                     <table class="table table-hover text-nowrap" id="attribute_table">
                         
-                        <form method="post" action="">
+                        <form method="post" action="" onsubmit="showLoad()">
                             <h3 class="widget-title">
                                 <thead class="head-date">
                                     <tr>
@@ -187,7 +318,7 @@
                                             <?php
                                                 echo "<option value='' selected>ปี</option>";
                                                 // Generate options for year dropdown
-                                                for ($i = $yearNow; $i > 2553; $i--) {                              //หาค่าปีแล้วดึงมาใส่ซะ
+                                                for ($i = $yearNow; $i > 2555; $i--) {                              //หาค่าปีแล้วดึงมาใส่ซะ
                                                     if($i == $yearNow){
                                                         //$j = $i - 543;
                                                         echo "<option class='selects' value='$i'>$i</option>";
@@ -219,10 +350,32 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <div class="form-group">
-                                            <button type="submit" name="check_lotto_btn" value="submit" title="ดูเลขถูกรางวัล" class="btnsh">ดูเลขถูกรางวัล</button>
+                                        <div class="form-group" >
+                                            <button type="submit" name="check_lotto_btn" value="submit" title="ดูเลขถูกรางวัล" class="btnsh" onclick="">ดูเลขถูกรางวัล</button>
                                         </div>
+                                        
+                                        <?php
+                                            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['check_lotto_btn'])) {
+                                                // ตรวจสอบเงื่อนไขหรือทำตามการเลือกวันที่ตามความเหมาะสม
+                                                
+                                                if (isset($_POST['year']) && isset($_POST['datemonth'])) {
+                                                    $selectedYear = $_POST['year'];
+                                                    $selectedMonth = $_POST['datemonth'];
+
+                                                    // ทำสิ่งที่คุณต้องการตามเงื่อนไข
+                                                    // ...
+
+                                                    // เช่น เรียกใช้ฟังก์ชัน work_flow_loading();
+                                                    //work_flow_loading();
+                                                    
+                                                }
+                                            }
+                                        ?>
                                     </td>
+                                    <td>
+                                        <div class="lds-dual-ring" id="preLoader"></div>
+                                    </td>
+                                    
                                 </tr>
                             </h3>
                         </form>
@@ -231,7 +384,7 @@
                                     <div class="textwidget custom-html-widget">
                                         <div class="entry-content">
                                             <div class="table-responsive">
-                                                <table id="reward1" class="easy-table easy-table-default table">
+                                                <table id="reward1" class="table1">
                                                     <thead>
                                                         <tr>
                                                             <th>
@@ -246,14 +399,14 @@
 
                                                     <tbody id="info">
                                                         <tr>
-                                                            <td class="myDiv" style="font-size: 40px; letter-spacing: 20px;"><b><?php echo $dataNow[0][1]; ?></b></td>
+                                                            <td /*class="myDiv"*/ style="font-size: 40px; letter-spacing: 20px;"><b><?php echo $dataNow[0][1]; ?></b></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                             
                                             <div class="table-responsive">
-                                                <table id="reward-3front-3back-2back" class="easy-table easy-table-default table">
+                                                <table id="reward-3front-3back-2back" class="table1">
                                                     <thead>
                                                         <tr>
                                                             <th class="myDivH" colspan="2" style="width: 40%; color: #fff; font-weight: normal!important;">
@@ -287,7 +440,7 @@
                                                 </table>
                                             </div>
                                             <div class="table-responsive">
-                                                <table id="nearreward1" class="easy-table easy-table-default table">
+                                                <table id="nearreward1" class="table1">
                                                     <thead>
                                                         <td>
                                                             <caption class="myDivH">
@@ -307,7 +460,7 @@
                                                 </table>
                                             </div>
                                             <div class="table-responsive">
-                                                <table id="reward2" class="easy-table easy-table-default table">
+                                                <table id="reward2" class="table1">
                                                     <caption class="myDivH">
                                                         <div class="md-text" style="height: 6px;">ผลสลาก รางวัลที่ 2</div>
                                                         <br/>
@@ -325,7 +478,7 @@
                                                 </table>
                                             </div>
                                             <div class="table-responsive">
-                                                <table id="reward3" class="easy-table easy-table-default table">
+                                                <table id="reward3" class="table1">
                                                     <caption class="myDivH">
                                                         <div class="md-text">ผลสลาก รางวัลที่ 3</div><br/><div class="sm-text">มี 10 รางวัลๆละ 80,000 บาท</div>
                                                     </caption>
@@ -349,7 +502,7 @@
                                                 </table>
                                             </div>
                                             <div class="table-responsive">
-                                                <table id="reward4" class="easy-table easy-table-default table">
+                                                <table id="reward4" class="table1">
                                                     <caption class="myDivH">
                                                         <div class="md-text">ผลสลาก รางวัลที่ 4</div><br/><div class="sm-text">มี 50 รางวัลๆละ 40,000 บาท</div>
                                                     </caption>
@@ -378,7 +531,7 @@
                                                 </table>
                                             </div>
                                             <div class="table-responsive">
-                                                <table id="reward5" class="easy-table easy-table-default table">
+                                                <table id="reward5" class="table1">
                                                     <caption class="myDivH">
                                                         <div class="md-text">ผลสลาก รางวัลที่ 5</div><br/><div class="sm-text">มี 100 รางวัลๆละ 20,000 บาท</div>
                                                     </caption>
@@ -501,7 +654,40 @@
 
         work_flow(); // เพิ่มเรียกใช้ฟังก์ชัน work_flow() เมื่อมีการเลือกปีใหม่
     });
+
+    function work_flow_loading() {
+        // ตรวจสอบเงื่อนไขหรือทำตามการเลือกวันที่ตามความเหมาะสม
+        // ...
+
+        // แสดง loading element เมื่อเริ่มต้นโหลดข้อมูล
+        document.querySelector('.loading').style.display = 'block';
+
+        // ส่ง AJAX request เพื่อดึงข้อมูลหรือทำการตรวจสอบ
+        // ...
+
+        // ซ่อน loading element เมื่อโหลดข้อมูลเสร็จสิ้น
+        document.querySelector('.loading').style.display = 'none';
+    }
+
+    $(document).ready(function() {
+        $('#check_lotto_btn').click(function() {
+            work_flow_loading();
+        });
+    });
+
+    function ativeShowPage(){
+        let content = setTimeout(showPage, 500);
+    }
+
+    function showPage(){
+        document.getElementById('preLoader').style.display = 'none';
+    }
+
+    function showLoad(){
+        document.getElementById('preLoader').style.display = 'block';
+    }
+
 </script>
-    
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1681173548 -->

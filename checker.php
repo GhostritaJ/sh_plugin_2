@@ -184,26 +184,26 @@
             
             <form method="post" action="" style="display:flex">
                 <div class="flex-item">
-                        <label for="year" class="label-year">พ.ศ.</label>
-                        <select id="year" name="year" class="year-select" onchange="work_flow()" required>
-                            <option value="">--โปรดเลือก--</option>
-                            <option value="<?php echo $year-15;?>"><?php echo $year-15;?></option>
-                            <option value="<?php echo $year-14;?>"><?php echo $year-14;?></option>
-                            <option value="<?php echo $year-13;?>"><?php echo $year-13;?></option>
-                            <option value="<?php echo $year-12;?>"><?php echo $year-12;?></option>
-                            <option value="<?php echo $year-11;?>"><?php echo $year-11;?></option>
-                            <option value="<?php echo $year-10;?>"><?php echo $year-10;?></option>
-                            <option value="<?php echo $year-9;?>"><?php echo $year-9;?></option>
-                            <option value="<?php echo $year-8;?>"><?php echo $year-8;?></option>
-                            <option value="<?php echo $year-7;?>"><?php echo $year-7;?></option>
-                            <option value="<?php echo $year-6;?>"><?php echo $year-6;?></option>
-                            <option value="<?php echo $year-5;?>"><?php echo $year-5;?></option>
-                            <option value="<?php echo $year-4;?>"><?php echo $year-4;?></option>
-                            <option value="<?php echo $year-3;?>"><?php echo $year-3;?></option>
-                            <option value="<?php echo $year-2;?>"><?php echo $year-2;?></option>
-                            <option value="<?php echo $year-1;?>"><?php echo $year-1;?></option>
-                            <option value="<?php echo $year;?>"><?php echo $year;?></option>
-                        </select>
+                    <label for="year" class="label-year">พ.ศ.</label>
+                    <select id="year" name="year" class="year-select" onchange="work_flow()" required>
+                        <option value="">--โปรดเลือก--</option>
+                        <option value="<?php echo $year-15;?>"><?php echo $year-15;?></option>
+                        <option value="<?php echo $year-14;?>"><?php echo $year-14;?></option>
+                        <option value="<?php echo $year-13;?>"><?php echo $year-13;?></option>
+                        <option value="<?php echo $year-12;?>"><?php echo $year-12;?></option>
+                        <option value="<?php echo $year-11;?>"><?php echo $year-11;?></option>
+                        <option value="<?php echo $year-10;?>"><?php echo $year-10;?></option>
+                        <option value="<?php echo $year-9;?>"><?php echo $year-9;?></option>
+                        <option value="<?php echo $year-8;?>"><?php echo $year-8;?></option>
+                        <option value="<?php echo $year-7;?>"><?php echo $year-7;?></option>
+                        <option value="<?php echo $year-6;?>"><?php echo $year-6;?></option>
+                        <option value="<?php echo $year-5;?>"><?php echo $year-5;?></option>
+                        <option value="<?php echo $year-4;?>"><?php echo $year-4;?></option>
+                        <option value="<?php echo $year-3;?>"><?php echo $year-3;?></option>
+                        <option value="<?php echo $year-2;?>"><?php echo $year-2;?></option>
+                        <option value="<?php echo $year-1;?>"><?php echo $year-1;?></option>
+                        <option value="<?php echo $year;?>"><?php echo $year;?></option>
+                    </select>
                 </div>
                 <div class="flex-item">
                         <label for="datemonth" class="label-month">วัน-เดือน</label>
@@ -230,7 +230,7 @@
                                                         // else{
                                                         //     echo "<option data-parent='$i' value='$rpADay,$rpMonthInt'>
                                                         //     $rpADay".' / '."$monthTh[$idxMonth]
-                                                        // </option>"; ?><br><?php
+                                                        // </option>"; ?><?php
                                                         // }
                                                       
                                                 }    
@@ -261,17 +261,38 @@
                     </div>
                     </div>
                 </div>
+                <div id="loading-spinner" style="display: none;">
+                    <!-- ตำแหน่งที่จะแสดง Spinner -->
+                    Loading...
+                </div>
                 <div style="padding-top: 2em;">
                     <button type="submit" name="submit" value="submit" style="margin:0 auto;">
                         ตรวจรางวัล
                     </button>
                 </div>
-                </form>
+            </form>
         </div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function loadData() {
+    // แสดง Spinner ขณะโหลด
+    document.getElementById('loading-spinner').style.display = 'block';
 
+    // เรียกใช้ Fetch API
+    fetch('fetch_data.php')
+        .then(response => response.json())
+        .then(data => {
+            // ซ่อน Spinner เมื่อโหลดเสร็จสมบูรณ์
+            document.getElementById('loading-spinner').style.display = 'none';
+
+            // แสดงข้อมูลที่ได้จากเซิร์ฟเวอร์
+            document.getElementById('data-container').innerHTML = data;
+        })
+        .catch(error => console.error('เกิดข้อผิดพลาดในการโหลดข้อมูล:', error));
+}
+</script>
 <script>
     async function get_datemonth(){
         let year = document.getElementById("year").value;

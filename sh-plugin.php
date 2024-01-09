@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: sh-plugin
-Description: [showhoy width="100%" height="2400"] เพิ่ม shortcode นี้ เพื่อเพิ่มตารางแสดงเลขถูกรางวัล และ [showhoy2 width="100%" height="650"] เพิ่ม shortcode นี้ การตรวจสอบผลรางวัล
+Description: [showhouy1 height="800"] เพิ่ม shortcode นี้ เพื่อเพิ่มตารางแสดงเลขถูกรางวัล และ [showhouy2 height="800"] เพิ่ม shortcode พร้อมระบุความสูงตามตัวอย่าง
 Author: GJ
 Version: 1.0.0
 */
