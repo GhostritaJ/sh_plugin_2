@@ -120,7 +120,6 @@ class Sh_Plugin_Admin {
 		register_setting('sh_plugin_options_group','div1_text_color');
 		register_setting('sh_plugin_options_group','div1_bg');
 		register_setting('sh_plugin_options_group','div2_text_color');
-		//register_setting('sh_plugin_options_group','div2_bg');
 		register_setting('sh_plugin_options_group','month_year_select_bg');
 		register_setting('sh_plugin_options_group','month_year_select_color');
 		register_setting('sh_plugin_options_group','month_year_bg');
@@ -130,6 +129,7 @@ class Sh_Plugin_Admin {
 		register_setting('sh_plugin_options_group','lottery_input_bg');
 		
 		register_setting('sh_plugin_options_group','button_text');
+		register_setting('sh_plugin_options_group','button_checker_radius');
 		register_setting('sh_plugin_options_group','button_checker_bg');
 		register_setting('sh_plugin_options_group','button_checker_bg_point');
 		register_setting('sh_plugin_options_group','button_checker_bg_active');
@@ -194,7 +194,9 @@ class Sh_Plugin_Admin {
 			1. การเพิ่ม shortcode <br>
 			- เพื่อเพิ่มส่วน checker(เลขที่ถูกรางวัล) ให้เพิ่ม [showhouy2 height="800"]<br>
 			- เลข 800 สามารถเปลี่ยนเป็นเลขอื่นได้ เพื่อกำหนดความสูง<br>
-			2. ช่องว่างที่เอาไว้ใส่ข้อความ มีไว้เพิ่ม css จะเพิ่มแบบธรรมดาหรือแบบ Gradient ก็ได้ โดยจะต้องใส่ !important หน้าเครื่องหมาย เซมิโคล่อน( ; ) ด้วย
+			2. ช่องว่างที่เอาไว้ใส่ข้อความ มีไว้เพิ่ม css จะเพิ่มแบบธรรมดาหรือแบบ Gradient ก็ได้ เช่น<br>
+			- background: white; หรือ background: #000000; หรือ<br>
+			background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%);
 		</b></h3>
         <table class="form-table">
 			<tr>
@@ -205,8 +207,11 @@ class Sh_Plugin_Admin {
 				</td>
             </tr>
 			<tr>
-				<th></th>
-				<td><img src="/wp-content/plugins/sh-plugin/img/checker01.png"></td>
+				
+				<th><h3>---------------------------</h3></th>
+				<td><h3>--------------------------------------------------------------------------------------------------------------</h3>
+					<img src="/wp-content/plugins/sh-plugin/img/checker01.png">
+				</td>
 			</tr>
             <tr>
                 <th scope="row"><label for="div1_text_color">สีตัวอักษร ตรวจผลสลากกินแบ่งรัฐบาล</label></th>
@@ -223,8 +228,11 @@ class Sh_Plugin_Admin {
 				</td>
             </tr>
 			<tr>
-				<th></th>
-				<td><img src="/wp-content/plugins/sh-plugin/img/checker02.png"></td>
+				
+				<th><h3>---------------------------</h3></th>
+				<td><h3>--------------------------------------------------------------------------------------------------------------</h3>
+					<img src="/wp-content/plugins/sh-plugin/img/checker02.png">
+				</td>
 			</tr>
             <tr>
                 <th scope="row"><label for="div2_text_color">สีตัวอักษร ตรวจผลรางวัล จากหมายเลขสลากงวดประจำวันที่</label></th>
@@ -241,8 +249,9 @@ class Sh_Plugin_Admin {
 				</td>
             </tr-->
 			<tr>
-				<th></th>
-				<td><img src="/wp-content/plugins/sh-plugin/img/checker03.png"></td>
+				<th><h3>---------------------------</h3></th>
+				<td><h3>--------------------------------------------------------------------------------------------------------------</h3>
+					<img src="/wp-content/plugins/sh-plugin/img/checker03.png"></td>
 			</tr>
 			<tr>
                 <th scope="row"><label for="month_year_select_color">สีตัวอักษร ช่องโปรดเลือก พ.ศ./วัน-เดือน</label></th>
@@ -273,8 +282,10 @@ class Sh_Plugin_Admin {
 				</td>
             </tr>
 			<tr>
-				<th></th>
-				<td><img src="/wp-content/plugins/sh-plugin/img/checker04.png"></td>
+				<th><h3>---------------------------</h3></th>
+				<td><h3>--------------------------------------------------------------------------------------------------------------</h3>
+					<img src="/wp-content/plugins/sh-plugin/img/checker04.png">
+				</td>
 			</tr>
 			<tr>
                 <th scope="row"><label for="lottery">สีตัวอักษร เลขสลาก 1,2,3</label></th>
@@ -298,14 +309,26 @@ class Sh_Plugin_Admin {
 				</td>
 			</tr>
 			<tr>
-				<th></th>
-				<td><img src="/wp-content/plugins/sh-plugin/img/checker05.png"></td>
+				<th><h3>---------------------------</h3></th>
+				<td><h3>--------------------------------------------------------------------------------------------------------------</h3>
+					<img src="/wp-content/plugins/sh-plugin/img/checker05.png">
+				</td>
 			</tr>
 			<tr>
                 <th scope="row"><label for="button_text">สีตัวอักษร ในปุ่ม</label></th>
                 <td>
 					<input type="color" class="wp-color-picker" name="button_text" id="button_text"
                     value="<?php echo get_option('button_text', '#FFFFFF'); ?>">
+				</td>
+            </tr>
+			<tr>
+                <th scope="row">
+					<label for="button_checker_radius">เรเดียส ขอบมน ของปุ่ม</label>
+					<br>(กรอกเฉพาะตัวเลขและหน่วย เช่น 100px)
+				</th>
+                <td>
+					<input type="textbox" name="button_checker_radius" id="button_checker_radius" style="width: 800px; height: 50px;"
+                    value="<?php echo get_option('button_checker_radius', '100px'); ?>">
 				</td>
             </tr>
 			<tr>
@@ -332,14 +355,18 @@ class Sh_Plugin_Admin {
 			
         </table>
 		<br>
-
+		<h3>--------------------------------------------------------------------------------------------------------------------------------------------</h3>
 		<h3><b>Design Settings Shower</b></h3><br>
 		<h3><b>เอกสารแนะนำการใช้งานส่วน Shower<br>
 			1. การเพิ่ม shortcode <br>
 			- เพื่อเพิ่มส่วน show(เลขที่ถูกรางวัล) ให้เพิ่ม [showhouy1 height="800"]<br>
 			- เลข 800 สามารถเปลี่ยนเป็นเลขอื่นได้ เพื่อกำหนดความสูง<br>
-			2. ช่องว่างที่เอาไว้ใส่ข้อความ มีไว้เพิ่ม css จะเพิ่มแบบธรรมดาหรือแบบ Gradient ก็ได้ โดยจะต้องใส่ !important หน้าเครื่องหมาย เซมิโคล่อน( ; ) ด้วย
-		</b></h3>
+			2. ช่องว่างที่เอาไว้ใส่ข้อความ มีไว้เพิ่ม css จะเพิ่มแบบธรรมดาหรือแบบ Gradient ก็ได้ เช่น<br>
+			- background: white; หรือ background: #000000; หรือ<br>
+			background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%);
+			</b>
+	
+		</h3>
         <table class="form-table">
 			<tr>
                 <th scope="row"><label for="bg_color_show">สีพื้นหลัง'</label></th>
@@ -349,8 +376,10 @@ class Sh_Plugin_Admin {
 				</td>
             </tr>
 			<tr>
-				<th></th>
-				<td><img src="/wp-content/plugins/sh-plugin/img/show01.png"></td>
+				<th><h3>---------------------------</h3></th>
+				<td><h3>--------------------------------------------------------------------------------------------------------------</h3>
+					<img src="/wp-content/plugins/sh-plugin/img/show01.png">
+				</td>
 			</tr>
             <tr>
                 <th scope="row"><label for="myBox_text_color">สีตัวอักษร งวด วันเดือนปี'</label></th>
@@ -367,8 +396,10 @@ class Sh_Plugin_Admin {
 				</td>
             </tr>
 			<tr>
-				<th></th>
-				<td><img src="/wp-content/plugins/sh-plugin/img/show02.png"></td>
+				<th><h3>---------------------------</h3></th>
+				<td><h3>--------------------------------------------------------------------------------------------------------------</h3>
+					<img src="/wp-content/plugins/sh-plugin/img/show02.png">
+				</td>
 			</tr>
 			<tr>
                 <th scope="row"><label for="head_date">สีตัวอักษร หัวข้อ ปี-วัน/เดือน</label></th>
@@ -392,24 +423,28 @@ class Sh_Plugin_Admin {
 				</td>
             </tr-->
 			<tr>
+				<th><h3>---------------------------</h3></th>
+				<td><h3>--------------------------------------------------------------------------------------------------------------</h3>
+					<img src="/wp-content/plugins/sh-plugin/img/show03.png">
+				</td>
+			</tr>
+			<tr>
                 <th scope="row"><label for="btnsh_color">สีตัวอักษร ในปุ่ม</label></th>
                 <td>
 					<input type="color" class="wp-color-picker" name="btnsh_color" id="btnsh_color"
                     value="<?php echo get_option('btnsh_color', '#FFFFFF'); ?>"></td>
             </tr>
 			<tr>
-				<th></th>
-				<td><img src="/wp-content/plugins/sh-plugin/img/show03.png"></td>
-			</tr>
-			<tr>
                 <th scope="row"><label for="btnsh_bg">สีพื้นหลัง ปุ่ม</label></th>
                 <td>
 					<input type="textbox" name="btnsh_bg" id="btnsh_bg" style="width: 800px; height: 50px;"
                     value="<?php echo get_option('btnsh_bg', 'background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%);'); ?>"></td>
-            	</tr>
+            </tr>
 			<tr>
-				<th></th>
-				<td><img src="/wp-content/plugins/sh-plugin/img/show04.png"></td>
+				<th><h3>---------------------------</h3></th>
+				<td><h3>--------------------------------------------------------------------------------------------------------------</h3>
+					<img src="/wp-content/plugins/sh-plugin/img/show04.png">
+				</td>
 			</tr>
             <tr>
                 <th scope="row"><label for="md_text">สีตัวอักษร หัวข้อ รางวัลต่างๆ</label></th>
@@ -433,8 +468,10 @@ class Sh_Plugin_Admin {
 				</td>
             </tr>
 			<tr>
-				<th></th>
-				<td><img src="/wp-content/plugins/sh-plugin/img/show05.png"></td>
+				<th><h3>---------------------------</h3></th>
+				<td><h3>--------------------------------------------------------------------------------------------------------------</h3>
+					<img src="/wp-content/plugins/sh-plugin/img/show05.png">
+				</td>
 			</tr>
 			<!--tr>
                 <th scope="row"><label for="td_myDiv_text">สีตัวอักษร เลขสลากที่ถูกรางวัล ที่ถูกเม้าส์ชี้</label></th>
@@ -444,7 +481,7 @@ class Sh_Plugin_Admin {
 				</td>
             </tr-->
 			<tr>
-                <th scope="row"><label for="td_myDiv_text_not">สีตัวอักษร เลขสลากที่ถูกรางวัล ที่ไม่ถูกเม้าส์ชี้</label></th>
+                <th scope="row"><label for="td_myDiv_text_not">สีตัวอักษร เลขสลากที่ถูกรางวัล</label></th>
                 <td>
 					<input type="color" class="wp-color-picker" name="td_myDiv_text_not" id="td_myDiv_text_not"
                     value="<?php echo get_option('td_myDiv_text_not'); ?>">
@@ -465,7 +502,7 @@ class Sh_Plugin_Admin {
 				</td>
             </tr-->
 			<tr>
-                <th scope="row"><label for="td_myDiv_bg_not">สีพื้นหลัง เลขสลากที่ถูกรางวัล ที่ไม่ถูกเม้าส์ชี้</label></th>
+                <th scope="row"><label for="td_myDiv_bg_not">สีพื้นหลัง เลขสลากที่ถูกรางวัล</label></th>
 				<td>
 					<input type="textbox" name="td_myDiv_bg_not" id="td_myDiv_bg_not" style="width: 800px; height: 50px;"
                     value="<?php echo get_option('td_myDiv_bg_not'); ?>">

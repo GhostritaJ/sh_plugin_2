@@ -260,8 +260,6 @@
                 ?>
                 <?php
                     $lastLotto = count($array_files)-1;
-                    //$lastLotto = count($responseYear[$yearNow])-1;
-                    //echo $lastLotto;
                     $datas[$yearNow][$lastLotto] = list_price_win($yearNow, $rpMonth[$yearNow][$lastLotto], $rpDay[$yearNow][$lastLotto]);
                     $dataNow = $datas[$yearNow][$lastLotto];
                 ?>
@@ -274,14 +272,11 @@
                             
                                             // echo "Event submit;";
                                                 $days = $_POST['datemonth'];
-                                                //$daymonth = explode(",", $_POST['day']);
                                                 $daymonth = explode("-", $days);
-                                                //print_r($daymonth);
                                                 $day = intval($daymonth[0]);
                                                 $month = intval($daymonth[1]);
                                                 $AmonthTh = $monthTh[$month-1];
                                                 $year = $_POST['year'];
-                                                //DEbug
                                                 ?><td class="myBox"><?php
                                                 echo 'งวด '.$day." ".$AmonthTh." ".$year;   
                                                 $dataNow = list_price_win($year,$month,$day); 
@@ -293,7 +288,6 @@
                                             $month = intval($daymonth[1]);
                                             $AmonthTh = $monthTh[$month-1];
                                             $year = $yearNow;
-                                            //DEbug
                                             ?><td class="myBox"><?php
                                             echo 'งวด '.$day." ".$AmonthTh." ".$year;   
                                             ?></td><?php 
@@ -354,23 +348,6 @@
                                             <button type="submit" name="check_lotto_btn" value="submit" title="ดูเลขถูกรางวัล" class="btnsh" onclick="">ดูเลขถูกรางวัล</button>
                                         </div>
                                         
-                                        <?php
-                                            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['check_lotto_btn'])) {
-                                                // ตรวจสอบเงื่อนไขหรือทำตามการเลือกวันที่ตามความเหมาะสม
-                                                
-                                                if (isset($_POST['year']) && isset($_POST['datemonth'])) {
-                                                    $selectedYear = $_POST['year'];
-                                                    $selectedMonth = $_POST['datemonth'];
-
-                                                    // ทำสิ่งที่คุณต้องการตามเงื่อนไข
-                                                    // ...
-
-                                                    // เช่น เรียกใช้ฟังก์ชัน work_flow_loading();
-                                                    //work_flow_loading();
-                                                    
-                                                }
-                                            }
-                                        ?>
                                     </td>
                                     <td>
                                         <div class="lds-dual-ring" id="preLoader"></div>
@@ -399,7 +376,7 @@
 
                                                     <tbody id="info">
                                                         <tr>
-                                                            <td /*class="myDiv"*/ style="font-size: 40px; letter-spacing: 20px;"><b><?php echo $dataNow[0][1]; ?></b></td>
+                                                            <td class="myDiv" style="font-size: 40px; letter-spacing: 20px;"><b><?php echo $dataNow[0][1]; ?></b></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -653,26 +630,6 @@
         });
 
         work_flow(); // เพิ่มเรียกใช้ฟังก์ชัน work_flow() เมื่อมีการเลือกปีใหม่
-    });
-
-    function work_flow_loading() {
-        // ตรวจสอบเงื่อนไขหรือทำตามการเลือกวันที่ตามความเหมาะสม
-        // ...
-
-        // แสดง loading element เมื่อเริ่มต้นโหลดข้อมูล
-        document.querySelector('.loading').style.display = 'block';
-
-        // ส่ง AJAX request เพื่อดึงข้อมูลหรือทำการตรวจสอบ
-        // ...
-
-        // ซ่อน loading element เมื่อโหลดข้อมูลเสร็จสิ้น
-        document.querySelector('.loading').style.display = 'none';
-    }
-
-    $(document).ready(function() {
-        $('#check_lotto_btn').click(function() {
-            work_flow_loading();
-        });
     });
 
     function ativeShowPage(){

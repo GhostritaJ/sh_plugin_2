@@ -168,7 +168,7 @@ class Sh_Plugin_Public {
 				background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%); */
 				<?php echo get_option('btnsh_bg'); ?>
 				font-family: 'Kanit', sans-serif;
-				border-radius: 10px;
+				border-radius: 0px;
 			}
 
 			.homesh{
@@ -552,23 +552,20 @@ class Sh_Plugin_Public {
 			/* background: rgb(0,0,0);
 			background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(122,76,32,1) 21%, rgba(47,24,2,1) 49%, rgba(197,128,61,1) 75%, rgba(0,0,0,1) 100%); */
 			<?php echo get_option('button_checker_bg'); ?>
-			/* box-shadow: 0 0 10px #9f9f9f; */
 			align-items: center;
 			/* color: #fff; */
 			color: <?php echo get_option('button_text'); ?>;
 			font-size: 28px;
 			padding: 5px 70px;
 			margin-bottom: 40;
-			border-radius: 10px;
+			border-radius: <?php echo get_option('button_checker_radius'); ?>;
 			font-family: "Kanit", sans-serif;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			/* border-width: 4px;
-			border-color: #80c0ec; */
 			transition: all 0.2s ease-in-out;
-			/* text-shadow: 2px 1px 8px #044263 */
 			border: 0px solid black!important;
+			font-weight: 900;
 			}
 	
 			@media screen and (max-width: 768px) {
