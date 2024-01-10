@@ -183,6 +183,7 @@
         <div class="flex-container">
             
             <form method="post" action="" style="display:flex">
+                <?php $year = date('Y')+543; ?>
                 <div class="flex-item">
                     <label for="year" class="label-year">พ.ศ.</label>
                     <select id="year" name="year" class="year-select" onchange="work_flow()" required>
@@ -204,6 +205,9 @@
                         <option value="<?php echo $year-1;?>"><?php echo $year-1;?></option>
                         <option value="<?php echo $year;?>"><?php echo $year;?></option>
                     </select>
+
+
+
                 </div>
                 <div class="flex-item">
                         <label for="datemonth" class="label-month">วัน-เดือน</label>
@@ -275,24 +279,7 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-function loadData() {
-    // แสดง Spinner ขณะโหลด
-    document.getElementById('loading-spinner').style.display = 'block';
 
-    // เรียกใช้ Fetch API
-    fetch('fetch_data.php')
-        .then(response => response.json())
-        .then(data => {
-            // ซ่อน Spinner เมื่อโหลดเสร็จสมบูรณ์
-            document.getElementById('loading-spinner').style.display = 'none';
-
-            // แสดงข้อมูลที่ได้จากเซิร์ฟเวอร์
-            document.getElementById('data-container').innerHTML = data;
-        })
-        .catch(error => console.error('เกิดข้อผิดพลาดในการโหลดข้อมูล:', error));
-}
-</script>
 <script>
     async function get_datemonth(){
         let year = document.getElementById("year").value;
